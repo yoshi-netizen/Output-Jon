@@ -718,7 +718,7 @@ erDiagram
     string email "メールアドレス / NOT NULL / UNIQUE"
     string encrypted_password "ログイン用パスワード / NOT NULL"
     string reset_password_token "パスワード再設定用トークン / UNIQUE"
-    datetime reset_password_send_at "パスワード再設定用メール送信日時"
+    datetime reset_password_sent_at "パスワード再設定用メール送信日時"
     datetime remember_created_at "ログイン状態保持開始日時"
     datetime created_at "作成日時 / NOT NULL"
     datetime updated_at "更新日時 / NOT NULL"
@@ -729,12 +729,22 @@ erDiagram
   posts {
     bigint id PK "投稿ID(主キー) / NOT NULL"
     bigint user_id FK "ユーザーID(外部キー) / NOT NULL"
-    text topic "考えたいテーマ / NOT NULL"
-    text ideas "思考の拡散"
-    string core_idea "思考の核"
-    text summary "AIによる言語化ドラフト"
+    text thinking_topic "STEP1 考えたいテーマ / NOT NULL"
+    text thinking_diffusion "STEP2 書き出された思考の断片"
+    string thinking_core "STEP3 選択された思考の核"
+    text thinking_output "STEP4 最終的な思考の言語化（AIによるテキスト生成→手動修正可）"
     integer status "公開ステータス / NOT NULL / DEFAULT: 0"
     datetime created_at "作成日 / NOT NULL"
     datetime updated_at "更新日 / NOT NULL"
   }
   ```
+### 補足:
+- ユーザーフロー
+  - STEP1 ```thinking_topic```を入力
+  - STEP2 ```thinking_diffusion```を入力
+  - STEP3 ```thinking_core```を選択
+  - STEP4 ```thinking_output```をAI生成入力→手動修正可
+- postsテーブルのstatus(公開ステータス)について
+  - enumで管理します。
+  - "0:draft, 1:private, 2:published"→0:未完了, 2:非公開, 3:公開
+  - MVPでは→0:未完了, 1:完了とします
