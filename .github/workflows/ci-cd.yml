@@ -1,7 +1,6 @@
-name: CI
+name: CI-CD
 
 on:
-  pull_request:
   push:
     branches: [ main ]
 
@@ -83,3 +82,12 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
+
+  deploy:
+    needs: [scan_ruby, lint, test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' 
+
+    steps:
+      - name: Trigger Render Deploy
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
