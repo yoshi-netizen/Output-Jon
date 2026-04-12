@@ -11,7 +11,4 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  
-  # トップ画面（サイトのルートURL "/" にアクセスした時の設定）
-  root "home#index"
 end
