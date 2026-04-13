@@ -1,8 +1,10 @@
 name: CI-CD
 
 on:
+  pull_request:
+    branches: [ "main" ]
   push:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
   scan_ruby:
@@ -84,9 +86,9 @@ jobs:
           if-no-files-found: ignore
 
   deploy:
-    needs: [scan_ruby, lint, test]
+    needs: [scan_ruby, lint, test] #事前テスト通過したときのみ実行
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' 
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' # mainブランチにプッシュされたの場合のみ実行
 
     steps:
       - name: Trigger Render Deploy
