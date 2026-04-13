@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users 
+  # 以下のようなルーティングが自動的に設定されます:
+  # サインアップ (/users/sign_up)
+  # ログイン (/users/sign_in)
+  # サインアウト (/users/sign_out)
+  # パスワードリセット (/users/password/new, /users/password/editなど)
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
