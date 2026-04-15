@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users 
+  devise_for :users
   # 以下のようなルーティングが自動的に設定されます:
   # サインアップ (/users/sign_up)
   # ログイン (/users/sign_in)
