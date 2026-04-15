@@ -45,6 +45,12 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "faker" # ランダムなデータ生成用
+
+  gem "rspec-rails", "~> 7.0.0" # RSpec本体
+
+  gem "factory_bot_rails" # テストデータ作成用
 end
 
 group :development do
@@ -57,3 +63,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "devise"
