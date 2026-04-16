@@ -48,7 +48,7 @@ group :development, :test do
 
   gem "faker" # ランダムなデータ生成用
 
-  gem "rspec-rails", "~> 7.0.0" # RSpec本体
+  gem "rspec-rails", "~> 8.0.4" # RSpec本体
 
   gem "factory_bot_rails" # テストデータ作成用
 end
