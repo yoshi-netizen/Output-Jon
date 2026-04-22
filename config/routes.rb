@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "posts/new"
   devise_for :users
   # 以下のようなルーティングが自動的に設定されます:
   # サインアップ (/users/sign_up)
