@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "posts/new"
   devise_for :users
   # 以下のようなルーティングが自動的に設定されます:
   # サインアップ (/users/sign_up)
@@ -6,19 +7,21 @@ Rails.application.routes.draw do
   # サインアウト (/users/sign_out)
   # パスワードリセット (/users/password/new, /users/password/editなど)
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # https://guides.rubyonrails.org/routing.html の DSL に従ってアプリケーションのルートを定義します。
+  
+  # /up でヘルスステータスを表示します。アプリケーションが例外なく起動した場合は 200、それ以外の場合は 500 を返します。
+  # ロードバランサーや稼働状況モニターで、アプリケーションが稼働していることを確認するために使用できます。
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/*
+  # app/views/pwa/* から動的なPWAファイルをレンダリングします。
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # Defines the root path route ("/")
+  # ルート パス ("/") を以下のように定義します。
   # root "posts#index"
 
   # トップ画面（サイトのルートURL "/" にアクセスした時の設定）
   root "home#index"
+
+  resources :posts, only: [:new]
 end
