@@ -68,4 +68,8 @@ RSpec.configure do |config|
 
 
   config.include FactoryBot::Syntax::Methods
+
+    # request spec でも sign_in/sign_out が使えるようになる
+  config.include Devise::Test::IntegrationHelpers, type: :request
+
 end

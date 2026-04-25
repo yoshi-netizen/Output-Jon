@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   # トップ画面（サイトのルートURL "/" にアクセスした時の設定）
   root "home#index"
 
-  resources :posts, only: [:new]
+  resources :posts, only: [:new, :create]
 end
