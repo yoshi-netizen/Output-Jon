@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   # ログイン後の遷移先を投稿作成ページに設定
   # deviseのデフォルトではルートページに設定されているため
-  def after_sign_in_path_for(resource) 
+  def after_sign_in_path_for(resource)
     new_post_path
   end
 end

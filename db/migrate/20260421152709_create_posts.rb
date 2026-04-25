@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[7.2]
       t.text       :thinking_diffusion
       t.string     :thinking_core
       t.text       :thinking_output
-      t.integer    :status, null: false, default: 0 
+      t.integer    :status, null: false, default: 0
 
       t.timestamps
     end
