@@ -1,0 +1,11 @@
+<h1>思考の整理テーマ</h1>
+<p>考えたいテーマを入力してください。</p>
+
+
+<%= form_with model: @post do |f| %>
+  <div>
+    <%= f.label :thinking_topic %>
+    <%= f.text_field :thinking_topic %>
+  </div>
+  <%= f.submit %>
+<% end %>
