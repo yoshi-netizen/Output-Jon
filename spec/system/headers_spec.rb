@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "ヘッダー", type: :system do
   include LoginMacros
   let(:user) { FactoryBot.create(:user) }
-  
+
   describe "表示の確認" do
     context "未ログイン時" do
       it "「ログイン」、「新規登録」が表示されること" do
@@ -22,7 +22,7 @@ RSpec.describe "ヘッダー", type: :system do
         expect(page).to have_no_link('ログイン')
         expect(page).to have_no_link('新規登録')
       end
-    end  
+    end
   end
 
   describe "ログアウト機能" do
@@ -30,7 +30,7 @@ RSpec.describe "ヘッダー", type: :system do
       login(user)
       click_link 'ログアウト'
       # ログアウト後の検証
-      expect(page).to have_content ('Signed out successfully.' )
+      expect(page).to have_content ('Signed out successfully.')
       expect(current_path).to eq root_path
       expect(page).to have_link ('ログイン')
     end
