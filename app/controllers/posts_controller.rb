@@ -12,8 +12,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to new_post_path, notice: "投稿に成功しました"
     else
-      flash.now[:alert] = "投稿に失敗しました"
-      render "new", status: :unprocessable_entity # Rails 7以降の推奨
+      render "new", status: :unprocessable_entity # Rails 7以降の推奨 HTTPステータスコード422を返す
     end
   end
 
