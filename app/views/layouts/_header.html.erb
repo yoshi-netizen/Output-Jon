@@ -12,8 +12,8 @@
         <!-- ナビゲーションリンク (デスクトップ) -->
         <div class="ml-10 hidden space-x-8 lg:block">
         <% if user_signed_in? %>
-          <%= link_to "思考整理", "#", class: "text-base font-medium text-gray-500 hover:text-gray-900" %>
-          <%= link_to "思考一覧", "#", class: "text-base font-medium text-gray-500 hover:text-gray-900" %>
+          <%= link_to "思考整理", new_post_path, class: "text-base font-medium text-gray-500 hover:text-gray-900" %>
+          <%= link_to "思考一覧", posts_path, class: "text-base font-medium text-gray-500 hover:text-gray-900" %>
           <%= link_to "利用規約", "#", class: "text-base font-medium text-gray-500 hover:text-gray-900" %>
           <%= link_to "プライバシーポリシー", "#", class: "text-base font-medium text-gray-500 hover:text-gray-900" %>
         <% else %>

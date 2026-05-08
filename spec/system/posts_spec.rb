@@ -38,4 +38,38 @@ RSpec.describe "思考整理の投稿機能", type: :system do
       end
     end
   end
+
+  describe '投稿一覧機能', type: :system do
+    context '一覧表示の確認' do
+      # ログインユーザーの投稿を複数作成（let!で事前に作成）
+      let!(:my_post) { FactoryBot.create(:post, user: user, thinking_topic: '自分の投稿') }
+      let!(:old_post) { FactoryBot.create(:post, user: user, thinking_topic: '古い投稿', created_at: 1.day.ago) }
+      # 他人の投稿を作成
+      let!(:others_post) { FactoryBot.create(:post, thinking_topic: '他人の投稿') }
+
+      before do
+        visit posts_path
+      end
+
+      it 'ログインユーザーの投稿のみが表示され、他人の投稿は表示されないこと' do
+        expect(page).to have_content '自分の投稿'
+        expect(page).to have_content '古い投稿'
+        expect(page).not_to have_content '他人の投稿'
+      end
+
+      it '投稿が新しい順（作成日時の降順）に表示されていること' do
+        # 「自分の投稿」が「古い投稿」より上にあるか確認
+        # page.body.index を使うと、HTML内に出現する順番を数値で比較できる
+        expect(page.body.index('自分の投稿')).to be < page.body.index('古い投稿')
+      end
+    end
+
+    context '投稿がない場合' do
+      it '適切なメッセージが表示されること' do
+        visit posts_path
+        expect(page).to have_content 'まだ投稿がありません'
+        expect(page).to have_link '思考を整理する', href: new_post_path
+      end
+    end
+  end
 end

@@ -16,6 +16,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def index
+    @posts = current_user.posts.includes(:user).order(created_at: :desc)
+  end
+
   private
 
   def post_params  # ストロングパラメータ
