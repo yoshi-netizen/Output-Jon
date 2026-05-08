@@ -1,9 +1,13 @@
 <h1>整理した思考一覧</h1>
-<% @posts.each do |post| %>
-<li>
-  <%= post.thinking_topic %>
-  <%= post.thinking_diffusion %>
-  <%= post.thinking_core %>
-  <%= post.thinking_output %>
-</li>
+<% if @posts.any? %>
+  <ul class="posts-list">
+    <% @posts.each do |post| %>
+      <li>
+        <%= post.thinking_topic %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>まだ投稿がありません。まずは今の気持ちを整理してみましょう！</p>
+  <%= link_to '思考を整理する', new_post_path %>
 <% end %>
