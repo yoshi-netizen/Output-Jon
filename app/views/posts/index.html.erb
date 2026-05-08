@@ -1,0 +1,9 @@
+<h1>整理した思考一覧</h1>
+<% @posts.each do |post| %>
+<li>
+  <%= post.thinking_topic %>
+  <%= post.thinking_diffusion %>
+  <%= post.thinking_core %>
+  <%= post.thinking_output %>
+</li>
+<% end %>
