@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  # テストデータの準備（FactoryBotを使っている場合を想定）
-  let(:user) { User.create(email: "test@example.com", password: "password") }
-  let(:post) { Post.new(thinking_topic: "テストのテーマ", user: user) }
+  # テストデータの準備
+  # userを作成
+  let(:user) { FactoryBot.create(:user) }
+  # userに紐付いた未保存のpostを準備
+  let(:post) { FactoryBot.build(:post, user: user) }
 
   it "有効な属性を持っていれば保存できること" do
     expect(post).to be_valid
