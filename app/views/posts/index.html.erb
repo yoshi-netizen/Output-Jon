@@ -3,7 +3,7 @@
   <ul class="posts-list">
     <% @posts.each do |post| %>
       <li>
-        <%= post.thinking_topic %>
+        <%= link_to post.thinking_topic,  post_path(post) %>
       </li>
     <% end %>
   </ul>

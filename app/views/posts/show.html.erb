@@ -1,0 +1,23 @@
+<h1>思考の詳細</h1>
+
+<div>
+  <h3>整理したいテーマ</h3>
+  <p><%= @post.thinking_topic %></p>
+</div>
+
+<div>
+  <h3>考えの箇条書き</h3>
+  <p><%= simple_format(@post.thinking_diffusion) %></p>
+</div>
+
+<div>
+  <h3>整理の目的</h3>
+  <p><%= @post.thinking_core %></p>
+</div>
+
+<div>
+  <h3>整理した考え</h3>
+  <p><%= @post.thinking_output %></p>
+</div>
+
+<%= link_to '一覧に戻る', posts_path %>

@@ -20,6 +20,10 @@ class PostsController < ApplicationController
     @posts = current_user.posts.includes(:user).order(created_at: :desc)
   end
 
+  def show
+    @post = current_user.posts.find(params[:id])
+  end
+
   private
 
   def post_params  # ストロングパラメータ

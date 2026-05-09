@@ -72,4 +72,24 @@ RSpec.describe "思考整理の投稿機能", type: :system do
       end
     end
   end
+
+  describe '投稿詳細機能', type: :system do
+    let!(:post) { FactoryBot.create(:post, user: user, thinking_topic: '詳細を見たいテーマ') }
+
+    before do
+      visit posts_path
+    end
+
+    it '一覧画面から詳細画面に遷移し、内容が表示されること' do
+      # 一覧画面のテーマ名をクリック
+      click_on '詳細を見たいテーマ'
+      # 詳細画面のURLに遷移しているか確認
+      expect(page).to have_current_path(post_path(post))
+      # 投稿の内容が表示されているか確認
+      expect(page).to have_content '詳細を見たいテーマ'
+      expect(page).to have_content post.thinking_diffusion
+      expect(page).to have_content post.thinking_core
+      expect(page).to have_content post.thinking_output
+    end
+  end
 end
