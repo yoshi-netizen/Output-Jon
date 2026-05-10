@@ -22,5 +22,8 @@
 
 <div class="mt-6 flex gap-4">
   <%= link_to '編集', edit_post_path(@post), class: "bg-yellow-500 text-white py-2 px-4 rounded" %>
+  <%= link_to "削除", post_path(@post), 
+            class: "bg-red-500 text-white py-2 px-4 rounded",
+            data: { turbo_method: :delete, turbo_confirm: "投稿を削除してよろしいですか？" } %>
   <%= link_to '一覧に戻る', posts_path, class: "text-gray-500" %>
 </div>

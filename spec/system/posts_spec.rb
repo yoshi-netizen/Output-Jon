@@ -120,4 +120,26 @@ RSpec.describe "思考整理の投稿機能", type: :system do
       end
     end
   end
+
+  describe "投稿削除機能", type: :system do
+    let!(:post) { FactoryBot.create(:post, user: user) }
+
+    before do
+      visit post_path(post)
+    end
+
+    it "投稿の削除が成功すること" do
+      # 削除ボタンを押して、ダイアログをOKする
+      page.accept_confirm do
+        click_on "削除"
+      end
+
+      # 一覧画面へ戻っているか確認
+      expect(page).to have_current_path(posts_path)
+      # 成功メッセージが出ているか確認
+      expect(page).to have_content "投稿を削除しました"
+      # 一覧から消えているか確認（タイトルが表示されていないこと）
+      expect(page).not_to have_content post.thinking_topic
+    end
+  end
 end
