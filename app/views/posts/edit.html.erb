@@ -1,0 +1,25 @@
+<h1>投稿の編集</h1>
+
+<%= form_with model: @post, local: true do |f| %>
+  <div>
+    <%= f.label :thinking_topic, '整理したいテーマ' %>
+    <%= f.text_field :thinking_topic, class: "border border-gray-400 rounded px-3 py-2" %>
+  </div>
+  <div>
+    <%= f.label :thinking_diffusion, '考えの箇条書き' %>
+    <%= f.text_area :thinking_diffusion, class: "border border-gray-400 rounded px-3 py-2" %>
+  </div>
+  <div>
+    <%= f.label :thinking_core, '整理の目的' %>
+    <%= f.select :thinking_core, ['【報連相】 どう伝えればいいか整理したい', '【学び・感想】 記事や講演の内容を自分の血肉にしたい', '【会議・打合せ】 決まったことと次やることを明確にしたい', '【壁打ち】 モヤモヤしていることを言語化してほしい'], { include_blank: '選択してください' }, class: "border border-gray-400 rounded px-3 py-2" %>
+  </div>
+  <div>
+    <%= f.label :thinking_output, '整理した考え' %>
+    <%= f.text_area :thinking_output, class: "border border-gray-400 rounded px-3 py-2" %>
+  </div>
+
+  <div class="mt-6">
+    <%= f.submit '更新する', class: "bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" %>
+    <%= link_to 'キャンセル', post_path(@post), class: "ml-4 text-gray-500" %>
+  </div>
+<% end %>
