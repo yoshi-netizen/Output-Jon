@@ -24,14 +24,14 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
   end
 
-  def edit 
+  def edit
     @post = current_user.posts.find(params[:id])
   end
 
   def update
     @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: '投稿を更新しました'
+      redirect_to post_path(@post), notice: "投稿を更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
