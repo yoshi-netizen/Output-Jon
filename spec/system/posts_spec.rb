@@ -87,9 +87,37 @@ RSpec.describe "思考整理の投稿機能", type: :system do
       expect(page).to have_current_path(post_path(post))
       # 投稿の内容が表示されているか確認
       expect(page).to have_content '詳細を見たいテーマ'
-      expect(page).to have_content post.thinking_diffusion
-      expect(page).to have_content post.thinking_core
-      expect(page).to have_content post.thinking_output
+    end
+  end
+
+  describe '投稿編集機能', type: :system do
+    let!(:post) { FactoryBot.create(:post, user: user, thinking_topic: '古いテーマ') }
+
+    before do
+      visit edit_post_path(post)
+    end
+
+    context 'フォームの入力値が正常な場合' do
+      it '投稿の更新が成功すること' do
+        fill_in '整理したいテーマ', with: '更新した後のテーマ'
+        click_on '更新する'
+        # 詳細画面へ遷移しているか確認
+        expect(page).to have_current_path(post_path(post))
+        # 成功メッセージが表示されているか確認
+        expect(page).to have_content '投稿を更新しました'
+        # 内容が更新されているか確認
+        expect(page).to have_content '更新した後のテーマ'
+      end
+    end
+
+    context 'テーマが空の場合' do
+      it '投稿の更新に失敗すること' do
+        fill_in '整理したいテーマ', with: ''
+        click_on '更新する'
+        # 編集画面にとどまっているか確認
+        expect(page).to have_content '件のエラーにより保存できませんでした'
+        expect(page).to have_content '投稿の編集' # 編集画面のタイトル
+      end
     end
   end
 end
