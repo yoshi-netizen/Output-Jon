@@ -51,6 +51,8 @@ group :development, :test do
   gem "rspec-rails", "~> 7.0.0" # RSpec本体
 
   gem "factory_bot_rails" # テストデータ作成用
+
+  gem "dotenv-rails" # Railsでdotenvを自動ロードする
 end
 
 group :development do
