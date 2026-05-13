@@ -52,7 +52,7 @@ group :development, :test do
 
   gem "factory_bot_rails" # テストデータ作成用
 
-  gem "dotenv-rails" # Railsでdotenvを自動ロードする
+  gem "dotenv-rails" # Railsで.envを自動ロードする
 end
 
 group :development do
