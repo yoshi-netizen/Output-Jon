@@ -43,6 +43,27 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "投稿を削除しました"
   end
 
+  def generate_summary
+    # 投稿を取得
+    @post = current_user.posts.find(params[:id])
+
+    # サービスを呼び出し
+    gemini = GeminiService.new
+    # 結果を@summaryに格納
+    @summary = gemini.call(
+      @post.thinking_topic,
+      @post.thinking_diffusion,
+      @post.thinking_core
+    )
+
+    @post.thinking_output = @summary
+    if @post.update(thinking_output: @summary)
+      redirect_to edit_post_path(@post), notice: "AIが整理しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def post_params  # ストロングパラメータ

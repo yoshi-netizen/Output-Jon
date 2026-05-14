@@ -22,5 +22,10 @@ Rails.application.routes.draw do
   # トップ画面（サイトのルートURL "/" にアクセスした時の設定）
   root "home#index"
 
-  resources :posts, only: [ :new, :create, :index, :show, :edit, :update, :destroy ]
+  resources :posts, only: [ :new, :create, :index, :show, :edit, :update, :destroy ] do
+    member do
+      # /posts/:id/generate_summary というURLを作成
+      post :generate_summary
+    end
+  end
 end

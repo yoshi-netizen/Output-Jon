@@ -30,8 +30,17 @@
     <%= f.text_area :thinking_output, class: "border border-gray-400 rounded px-3 py-2" %>
   </div>
 
+
   <div class="mt-6">
     <%= f.submit '更新する', class: "bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" %>
     <%= link_to 'キャンセル', post_path(@post), class: "ml-4 text-gray-500" %>
   </div>
 <% end %>
+
+<div class="mt-2 mb-4">
+  <%= button_to 'AIに整理してもらう', 
+              generate_summary_post_path(@post), 
+              method: :post, 
+              data: { turbo: false },
+              class: "bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600" %>
+</div>
