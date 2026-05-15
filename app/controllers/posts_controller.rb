@@ -10,9 +10,13 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to new_post_path, notice: "投稿に成功しました"
+      if params[:generate_ai].present?
+        redirect_to edit_post_path(@post, ai_generate: true), notice: "初期保存しました。AI文章を生成します..."
+      else
+        redirect_to new_post_path, notice: "投稿に成功しました"
+      end
     else
-      render "new", status: :unprocessable_entity # Rails 7以降の推奨 HTTPステータスコード422を返す
+      render "new", status: :unprocessable_entity
     end
   end
 
@@ -44,21 +48,17 @@ class PostsController < ApplicationController
   end
 
   def generate_summary
-    # 投稿を取得
     @post = current_user.posts.find(params[:id])
-
-    # サービスを呼び出し
     gemini = GeminiService.new
-    # 結果を@summaryに格納
     @summary = gemini.call(
       @post.thinking_topic,
       @post.thinking_diffusion,
       @post.thinking_core
     )
-
     @post.thinking_output = @summary
+
     if @post.update(thinking_output: @summary)
-      redirect_to edit_post_path(@post), notice: "AIが整理しました"
+      render layout: false
     else
       render :edit, status: :unprocessable_entity
     end
