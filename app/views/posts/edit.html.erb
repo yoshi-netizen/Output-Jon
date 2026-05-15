@@ -39,9 +39,10 @@
 <% end %>
 
 <div class="mt-2 mb-4">
-  <%= button_to 'AIに整理してもらう', 
+  <%= link_to 'AIに整理してもらう', 
               generate_summary_post_path(@post), 
               method: :post, 
+              data: { turbo: false },
               class: "bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600" %>
 </div>
 
@@ -49,7 +50,7 @@
 <% if params[:ai_generate] == "true" %>
   <turbo-frame id="ai_generator_trigger" src="<%= generate_summary_post_path(@post) %>">
     <div class="mt-4 p-3 bg-gray-100 border border-gray-300 rounded text-center animate-pulse">
-      <p class="text-gray-600 font-medium">✨ Geminiが思考を整理しています。しばらくお待ちください...</p>
+      <p class="text-gray-600 font-medium">✨ AIが思考を整理しています。しばらくお待ちください...</p>
     </div>
   </turbo-frame>
 <% end %>

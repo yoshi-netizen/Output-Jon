@@ -58,7 +58,14 @@ class PostsController < ApplicationController
     @post.thinking_output = @summary
 
     if @post.update(thinking_output: @summary)
-      render layout: false
+      # 最小の変更：アクセス元を判定して処理を分岐させる
+      if request.headers["Turbo-Frame"].present?
+        # 新規保存からの自動ロード（Turbo Frame）の時は、これまで通り部分更新用HTMLを返す
+        render layout: false
+      else
+        # 編集画面で手動ボタン（通常のHTML）を押した時は、元の編集画面へリダイレクト（画面をリロード）
+        redirect_to edit_post_path(@post), notice: "AIが思考を整理しました"
+      end
     else
       render :edit, status: :unprocessable_entity
     end

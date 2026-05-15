@@ -32,9 +32,9 @@
                                   class: "border border-gray-400 rounded px-3 py-2" %>
   </div>
 
-  <%# AI出力エリアをID付きコンポーネント化 %>
-  <div id="thinking_output_field" class="mt-4">
-    <%= render "posts/thinking_output_form", post: @post %>
+  <div>
+    <%= f.label :thinking_output, '整理した思考' %>
+    <%= f.text_area :thinking_output, class: "border border-gray-400 rounded px-3 py-2" %>
   </div>
 
   <%= f.submit '保存してAI生成', name: "generate_ai", class: "ml-4 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 cursor-pointer" %>
