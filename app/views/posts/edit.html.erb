@@ -27,9 +27,7 @@
   </div>
 
   <%# AI出力エリアをID付きコンポーネント化 %>
-  <div id="thinking_output_field" class="mt-4">
-    <%= render "posts/thinking_output_form", post: @post %>
-  </div>
+  <%= render "posts/thinking_output_form", post: @post %>
 
   <div class="mt-6">
     <%= f.submit '更新する', class: "bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" %>
