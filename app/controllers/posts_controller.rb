@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      if params[:generate_ai].present?
+      if params[:generate_ai].present? # AI生成ボタンが押されたかチェック
         redirect_to edit_post_path(@post, ai_generate: true), notice: "初期保存しました。AI文章を生成します..."
       else
         redirect_to new_post_path, notice: "投稿に成功しました"
@@ -58,7 +58,7 @@ class PostsController < ApplicationController
     @post.thinking_output = @summary
 
     if @post.update(thinking_output: @summary)
-      # 最小の変更：アクセス元を判定して処理を分岐させる
+      # アクセス元を判定して処理を分岐させる
       if request.headers["Turbo-Frame"].present?
         # 新規保存からの自動ロード（Turbo Frame）の時は、これまで通り部分更新用HTMLを返す
         render layout: false
