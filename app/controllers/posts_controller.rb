@@ -35,7 +35,11 @@ class PostsController < ApplicationController
   def update
     @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: "投稿を更新しました"
+      if params[:generate_ai].present? # AI生成ボタンが押されてupdateされた場合
+        redirect_to edit_post_path(@post, ai_generate: true), notice: "保存しました。AIが思考を整理します..."
+      else
+        redirect_to post_path(@post), notice: "投稿を更新しました"
+      end
     else
       render :edit, status: :unprocessable_entity
     end
