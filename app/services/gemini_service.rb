@@ -27,17 +27,17 @@ class GeminiService
     TEXT
 
     uri = URI.parse("#{ENDPOINT}?key=#{@api_key}")
-    
+
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
 
-    request = Net::HTTP::Post.new(uri.request_uri, { 'Content-Type' => 'application/json' })
+    request = Net::HTTP::Post.new(uri.request_uri, { "Content-Type" => "application/json" })
     request.body = {
-      contents: [{ parts: [{ text: prompt }] }]
+      contents: [ { parts: [ { text: prompt } ] } ]
     }.to_json
 
     response = http.request(request)
-    
+
     if response.code == "200"
       JSON.parse(response.body).dig("candidates", 0, "content", "parts", 0, "text")
     else
