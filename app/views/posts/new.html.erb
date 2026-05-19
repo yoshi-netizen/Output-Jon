@@ -32,12 +32,14 @@
                                   class: "border border-gray-400 rounded px-3 py-2" %>
   </div>
 
-  <div>
-    <%= f.label :thinking_output, '整理した思考' %>
+  <div class="mt-4">
+    <div class="flex items-center gap-2 mb-2">
+      <%= f.label :thinking_output, '整理した思考' %>
+      <%= f.submit '内容を保存してAIで整理する', name: "generate_ai", class: "text-sm bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 whitespace-nowrap" %>
+    </div>
     <%= f.text_area :thinking_output, class: "border border-gray-400 rounded px-3 py-2" %>
   </div>
 
-  <%= f.submit '保存してAI生成', name: "generate_ai", class: "ml-4 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 cursor-pointer" %>
 
   <%= f.submit '保存' %>
 <% end %>
