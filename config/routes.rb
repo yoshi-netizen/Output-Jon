@@ -22,5 +22,10 @@ Rails.application.routes.draw do
   # トップ画面（サイトのルートURL "/" にアクセスした時の設定）
   root "home#index"
 
-  resources :posts, only: [ :new, :create, :index, :show, :edit, :update, :destroy ]
+  resources :posts, only: [ :new, :create, :index, :show, :edit, :update, :destroy ] do
+    member do
+      post :generate_summary # /posts/:id/generate_summary というURLを作成
+      get :generate_summary # Turbo Frameのsrc属性からのGETリクエストを受け取るために追加
+    end
+  end
 end
