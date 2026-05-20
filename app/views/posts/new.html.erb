@@ -24,9 +24,11 @@
 
         <%# テーマ %>
         <div>
-          <%= f.label :thinking_topic, "整理したいテーマ", class: "block text-sm font-medium text-gray-600 mb-1.5" %>
+  <%= f.label :thinking_topic, class: "inline-flex items-center text-sm font-medium text-gray-600 mb-1.5" do %>
+    整理したいテーマ<span class="text-xs font-medium ml-1 border rounded px-1" style="color: #da8d6c; border-color: #da8d6c;">必須</span>
+  <% end %>
           <%= f.text_field :thinking_topic,
-              placeholder: "例：〇〇の相談内容について・来週の進捗報告について・読んだ記事の感想",
+              placeholder: "例：〇〇の相談内容について・来週の進捗報告について・読んだ記事の感想(リンクでも可)",
               class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition" %>
         </div>
 
@@ -61,13 +63,14 @@
                 class: "text-sm font-medium text-white px-3 py-1.5 rounded-lg cursor-pointer transition hover:opacity-90 whitespace-nowrap",
                 style: "background-color: #da8d6c;" %>
           </div>
-          <p class="text-xs text-gray-400 mb-1.5">AIが整理した内容が入ります。編集も可能です</p>
+          <p class="text-xs text-gray-400 mb-1.5">「AIで整理する」ボタンをクリックすると入力内容をもとに思考を整理します。生成後に自由に編集できます。</p>
           <%= f.text_area :thinking_output,
               rows: 6,
               class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition resize-none" %>
         </div>
         <%# 保存ボタン %>
         <div class="mt-6">
+        <p class="text-xs text-gray-400 mb-2">入力途中でも保存できます。あとから編集ページで続きを編集できます。</p>
           <%= f.submit "保存する",
               class: "w-full py-2.5 text-sm font-medium text-white rounded-lg cursor-pointer transition hover:opacity-90",
               style: "background-color: #47a971;" %>
