@@ -9,15 +9,15 @@
         <% end %>
 
         <!-- ナビゲーションリンク (デスクトップ) -->
-        <div class="ml-10 hidden space-x-6 lg:block">
+        <div class="ml-10 hidden space-x-6 sm:block">
         <% if user_signed_in? %>
           <%= link_to "思考整理", new_post_path, class: "text-sm text-gray-400 hover:text-gray-700 transition" %>
           <%= link_to "思考一覧", posts_path, class: "text-sm text-gray-400 hover:text-gray-700 transition" %>
-          <%= link_to "利用規約", "#", class: "text-sm text-gray-400 hover:text-gray-700 transition" %>
-          <%= link_to "プライバシーポリシー", "#", class: "text-sm text-gray-400 hover:text-gray-700 transition" %>
+          <%# link_to "利用規約", "#", class: "text-sm text-gray-400 hover:text-gray-700 transition" %>
+          <%# link_to "プライバシーポリシー", "#", class: "text-sm text-gray-400 hover:text-gray-700 transition" %>
         <% else %>
-          <%= link_to "利用規約", "#", class: "text-sm text-gray-400 hover:text-gray-700 transition" %>
-          <%= link_to "プライバシーポリシー", "#", class: "text-sm text-gray-400 hover:text-gray-700 transition" %>
+          <%# link_to "利用規約", "#", class: "text-sm text-gray-400 hover:text-gray-700 transition" %>
+          <%# link_to "プライバシーポリシー", "#", class: "text-sm text-gray-400 hover:text-gray-700 transition" %>
         <% end %>
         </div>
       </div>
