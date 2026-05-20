@@ -32,7 +32,7 @@
 
         <%# 箇条書き %>
         <div>
-          <%= f.label :thinking_diffusion, "考えの箇条書き", class: "block text-sm font-medium text-gray-600 mb-1.5" %>
+          <%= f.label :thinking_diffusion, "思考の書き出し", class: "block text-sm font-medium text-gray-600 mb-1.5" %>
           <p class="text-xs text-gray-400 mb-1.5">頭にあることをそのまま書き出してください。</p>
           <p class="text-xs text-gray-400 mb-1.5">無理に文章にしようとせずに箇条書きで書くと書き出しやすいですよ。</p>
           <%= f.text_area :thinking_diffusion,
@@ -56,7 +56,7 @@
         <%# 整理した思考 + AIボタン %>
         <div>
           <div class="flex items-center justify-between mb-1.5">
-            <%= f.label :thinking_output, "整理した思考", class: "text-sm font-medium text-gray-600" %>
+            <%= f.label :thinking_output, "思考を整理する", class: "text-sm font-medium text-gray-600" %>
             <%= f.submit "AIで整理する", name: "generate_ai",
                 class: "text-sm font-medium text-white px-3 py-1.5 rounded-lg cursor-pointer transition hover:opacity-90 whitespace-nowrap",
                 style: "background-color: #da8d6c;" %>

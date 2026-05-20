@@ -18,7 +18,7 @@
     <%= f.text_field :thinking_topic, class: "border border-gray-400 rounded px-3 py-2" %>
   </div>
   <div>
-    <%= f.label :thinking_diffusion, '考えの箇条書き' %>
+    <%= f.label :thinking_diffusion, '思考の書き出し' %>
     <%= f.text_area :thinking_diffusion, class: "border border-gray-400 rounded px-3 py-2" %>
   </div>
   <div>
@@ -28,9 +28,9 @@
 
   <div class="mt-4">
     <div class="flex items-center gap-2 mb-2">
-      <%= f.label :thinking_output, '整理した考え' %>
+      <%= f.label :thinking_output, '思考を整理する' %>
       <%= f.submit 'AIに整理してもらう', name: "generate_ai", 
-                   class: "text-sm bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 whitespace-nowrap" %>
+                  class: "text-sm bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 whitespace-nowrap" %>
     </div>
     <div id="thinking_output_field">
       <%= f.text_area :thinking_output, class: "border border-gray-400 rounded px-3 py-2 w-full", rows: 10 %> 
