@@ -47,7 +47,7 @@
               ['【報連相】 どう伝えればいいか整理したい',
               '【学び・感想】 記事や講演の内容を自分の血肉にしたい',
               '【会議・打合せ】 決まったことと次やることを明確にしたい',
-              '【壁打ち】 モヤモヤしていることを言語化してほしい'],
+              '【壁打ち】 モヤモヤしていることを言語化したい'],
               { include_blank: '選択してください' },
               class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition bg-white" %>
         </div>
@@ -60,6 +60,7 @@
                 class: "text-xs font-medium text-white px-3 py-1.5 rounded-lg cursor-pointer transition hover:opacity-90 whitespace-nowrap",
                 style: "background-color: #da8d6c;" %>
           </div>
+          <p class="text-xs text-gray-400 mb-1.5">⚠️「AIで整理する」ボタンをクリックすると内容が上書き保存されるので注意ください。⚠️</p>
           <div id="thinking_output_field">
             <%= f.text_area :thinking_output,
                 rows: 10,

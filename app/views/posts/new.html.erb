@@ -35,8 +35,8 @@
         <%# 箇条書き %>
         <div>
           <%= f.label :thinking_diffusion, "思考の書き出し", class: "block text-sm font-medium text-gray-600 mb-1.5" %>
-          <p class="text-xs text-gray-400 mb-1.5">頭にあることをそのまま書き出してください。</p>
-          <p class="text-xs text-gray-400 mb-1.5">無理に文章にしようとせずに箇条書きで書くと書き出しやすいですよ。</p>
+          <p class="text-xs text-gray-400 mb-1.5">頭にあること、現在の状況などをそのまま書き出してください。</p>
+          <p class="text-xs text-gray-400 mb-1.5">無理に文章にしようとせずに箇条書きで書くと書き出しやすいのでオススメです。</p>
           <%= f.text_area :thinking_diffusion,
               rows: 5,
               placeholder: "例：&#13;&#10;Aの作業が少し遅れている&#13;&#10;来週中には挽回できそう&#13;&#10;懸念点をチームに共有したい".html_safe,
@@ -50,7 +50,7 @@
               ['【報連相】 どう伝えればいいか整理したい',
               '【学び・感想】 記事や講演の内容を自分の血肉にしたい',
               '【会議・打合せ】 決まったことと次やることを明確にしたい',
-              '【壁打ち】 モヤモヤしていることを言語化してほしい'],
+              '【壁打ち】 モヤモヤしていることを言語化したい'],
               { include_blank: '選択してください' },
               class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition bg-white" %>
         </div>
