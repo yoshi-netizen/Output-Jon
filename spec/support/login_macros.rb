@@ -1,9 +1,9 @@
 module LoginMacros
   def login(user)
     visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: 'password'
-    click_on 'Log in'
+    fill_in 'メールアドレス', with: user.email
+    fill_in 'パスワード', with: 'password'
+    click_button 'ログイン'
 
     expect(page).to have_content 'Signed in successfully.'
   end

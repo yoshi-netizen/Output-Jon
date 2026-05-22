@@ -13,9 +13,9 @@ RSpec.describe "思考整理の投稿機能", type: :system do
     context "入力内容が正しいとき" do
       it "投稿が成功し、成功メッセージが表示されること" do
         fill_in '整理したいテーマ', with: 'テストテーマ'
-        fill_in '考えの箇条書き', with: '考えのテスト内容'
+        fill_in '思考の書き出し', with: '考えのテスト内容'
         select '【壁打ち】 モヤモヤしていることを言語化してほしい', from: '整理の目的'
-        fill_in '整理した思考', with: '整理後のテスト内容'
+        fill_in '思考を整理する', with: '整理後のテスト内容'
         click_on '保存'
         # 成功メッセージが表示されるのを待つ
         expect(page).to have_content '投稿に成功しました'
@@ -155,20 +155,23 @@ RSpec.describe "思考整理の投稿機能", type: :system do
       visit edit_post_path(post)
     end
 
-    context "「AIに整理してもらう」ボタンを押したとき" do
+    context "「AIで整理する」ボタンを押したとき" do
       it "フォームの内容が保存されてからAIが実行されること" do
         fill_in '整理したいテーマ', with: 'ボタン押下前に入力したテーマ'
-        click_on 'AIに整理してもらう'
+        click_on 'AIで整理する'
+
+        # 非同期完了をDOMで待つ
+        expect(page).to have_content('AIが整理した文章')
 
         # 保存されているか確認
         expect(post.reload.thinking_topic).to eq('ボタン押下前に入力したテーマ')
       end
 
-      it "AI実行後、整理した考えエリアにAIの結果が表示されること" do
-        click_on 'AIに整理してもらう'
+      it "AI実行後、整理した思考エリアにAIの結果が表示されること" do
+        click_on 'AIで整理する'
 
         # AIの結果がtextareaに反映されているか確認
-        expect(page).to have_field('整理した考え', with: 'AIが整理した文章')
+        expect(page).to have_field('整理した思考', with: 'AIが整理した文章')
       end
     end
 
@@ -176,12 +179,12 @@ RSpec.describe "思考整理の投稿機能", type: :system do
       it "編集画面でAIが自動実行され、結果が表示されること" do
         visit new_post_path
         fill_in '整理したいテーマ', with: '新規からのテーマ'
-        fill_in '考えの箇条書き', with: '新規からの箇条書き'
+        fill_in '思考の書き出し', with: '新規からの箇条書き'
         select '【壁打ち】 モヤモヤしていることを言語化してほしい', from: '整理の目的'
-        click_on '内容を保存してAIで整理する'
+        click_on 'AIで整理する'
 
         # 編集画面へ遷移しAIが自動実行される
-        expect(page).to have_field('整理した考え', with: 'AIが整理した文章')
+        expect(page).to have_field('整理した思考', with: 'AIが整理した文章')
       end
     end
   end
