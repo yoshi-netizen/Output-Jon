@@ -14,7 +14,7 @@ RSpec.describe "思考整理の投稿機能", type: :system do
       it "投稿が成功し、成功メッセージが表示されること" do
         fill_in '整理したいテーマ', with: 'テストテーマ'
         fill_in '思考の書き出し', with: '考えのテスト内容'
-        select '【壁打ち】 モヤモヤしていることを言語化してほしい', from: '整理の目的'
+        select '【壁打ち】 モヤモヤしていることを言語化したい', from: '整理の目的'
         fill_in '思考を整理する', with: '整理後のテスト内容'
         click_on '保存'
         # 成功メッセージが表示されるのを待つ
@@ -180,7 +180,7 @@ RSpec.describe "思考整理の投稿機能", type: :system do
         visit new_post_path
         fill_in '整理したいテーマ', with: '新規からのテーマ'
         fill_in '思考の書き出し', with: '新規からの箇条書き'
-        select '【壁打ち】 モヤモヤしていることを言語化してほしい', from: '整理の目的'
+        select '【壁打ち】 モヤモヤしていることを言語化したい', from: '整理の目的'
         click_on 'AIで整理する'
 
         # 編集画面へ遷移しAIが自動実行される
