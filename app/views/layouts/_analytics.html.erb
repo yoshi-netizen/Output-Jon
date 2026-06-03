@@ -1,13 +1,13 @@
 <% if Rails.env.production? %>
   <!-- Google Analytics -->
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7YZTTEKGL"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV['GOOGLE_ANALYTICS_ID'] %>"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', '<%= ENV['GOOGLE_ANALYTICS_ID'] %>');
+    gtag('config', '<%= ENV["GOOGLE_ANALYTICS_ID"]%>');
   </script>
   
   <!-- Microsoft Clarity -->
@@ -16,6 +16,6 @@
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "<%= ENV['CLARITY_ID'] %>");
+    })(window, document, "clarity", "script", "<%= ENV["CLARITY_ID"]%>");
   </script>
 <% end %>
