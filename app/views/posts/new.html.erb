@@ -66,6 +66,7 @@
           <p class="text-xs text-gray-400 mb-1.5">「AIで整理する」ボタンをクリックすると入力内容をもとに思考を整理します。生成後に自由に編集できます。</p>
           <%= f.text_area :thinking_output,
               rows: 6,
+              placeholder: "ここのフォームは手動で入力する必要はありません。&#13;&#10;「AIで整理する」ボタンをクリックすると自動で入力されます。&#13;&#10;もちろんご自身で入力されてもO.Kです！".html_safe,
               class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition resize-none" %>
         </div>
         <%# 保存ボタン %>
