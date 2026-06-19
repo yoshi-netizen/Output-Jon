@@ -53,27 +53,20 @@
         </div>
 
         <%# 整理した思考 + AIボタン %>
-        <div class="flex items-center justify-between mb-1.5">
-          <%= f.label :thinking_output, "整理した思考", class: "text-sm font-medium text-gray-600" %>
-          <%= f.submit "AIで整理する", name: "generate_ai",
-              class: "text-xs font-medium text-white px-3 py-1.5 rounded-lg cursor-pointer transition hover:opacity-90 whitespace-nowrap",
-              style: "background-color: #da8d6c;" %>
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <%= f.label :thinking_output, "整理した思考", class: "text-sm font-medium text-gray-600" %>
+            <%= f.submit "AIで整理する", name: "generate_ai",
+                class: "text-xs font-medium text-white px-3 py-1.5 rounded-lg cursor-pointer transition hover:opacity-90 whitespace-nowrap",
+                style: "background-color: #da8d6c;" %>
+          </div>
+          <p class="text-xs text-gray-400 mb-1.5">⚠️「AIで整理する」ボタンをクリックすると内容が上書き保存されるので注意ください。⚠️</p>
+          <div id="thinking_output_field">
+            <%= f.text_area :thinking_output,
+                rows: 10,
+                class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition resize-none" %>
+          </div>
         </div>
-        <p class="text-xs text-gray-400 mb-1.5">⚠️「AIで整理する」ボタンをクリックすると内容が上書き保存されるので注意ください。⚠️</p>
-
-        <div data-controller="clipboard" id="thinking_output_field">
-          <%= f.text_area :thinking_output,
-              rows: 10,
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition resize-none",
-              data: { clipboard_target: "source" } %>
-          <button type="button"
-                  data-action="click->clipboard#copy"
-                  data-clipboard-target="button"
-                  class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm">
-            コピー
-          </button>
-        </div>
-
         <div class="mt-6 flex items-center gap-3">
           <%= f.submit "更新する",
               class: "text-sm font-medium text-white px-6 py-2.5 rounded-lg cursor-pointer transition hover:opacity-90",
