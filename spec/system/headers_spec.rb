@@ -28,7 +28,7 @@ RSpec.describe "ヘッダー", type: :system do
   describe "ログアウト機能" do
     it 'ログアウトをクリックするとログアウトし、ルートページへリダイレクトされること' do
       login(user)
-      click_link 'ログアウト'
+      click_link 'ログアウト', visible: true
       # ログアウト後の検証
       expect(page).to have_content ('Signed out successfully.')
       expect(current_path).to eq root_path
