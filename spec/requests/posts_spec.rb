@@ -13,6 +13,33 @@ RSpec.describe "Posts", type: :request do
   end
 
   # ----------------------------------------------------------------
+  # 他ユーザーの投稿へのアクセス
+  # ----------------------------------------------------------------
+  describe "他ユーザーの投稿へのアクセス" do
+    before { sign_in other_user }
+
+    it "GETのshowにアクセスできないこと" do
+      get post_path(post_record)
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it "GETのeditにアクセスできないこと" do
+      get edit_post_path(post_record)
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it "PATCHのupdateができないこと" do
+      patch post_path(post_record), params: { post: { thinking_topic: "変更" } }
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it "DELETEのdestroyができないこと" do
+      delete post_path(post_record)
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  # ----------------------------------------------------------------
   # 未ログイン時のリダイレクト確認
   # ----------------------------------------------------------------
   describe "未ログイン時" do
