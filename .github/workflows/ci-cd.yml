@@ -72,7 +72,7 @@ jobs:
 
       # Node を用意（本番 Dockerfile と同じバージョンに揃えるため .node-version=24.14.1 を参照）
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: .node-version   # ランナー既定ではなくファイル指定でバージョン固定
           cache: yarn                        # yarn.lock を鍵に依存をキャッシュして高速化
