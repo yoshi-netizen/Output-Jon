@@ -85,7 +85,7 @@ jobs:
           yarn build      # esbuild で JS を app/assets/builds/application.js に生成
           yarn build:css  # @tailwindcss/cli で CSS を app/assets/builds/application.css に生成
 
-      - name: Run tests
+      - name: Run Rspec
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
