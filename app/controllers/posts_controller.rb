@@ -81,3 +81,4 @@ class PostsController < ApplicationController
     params.require(:post).permit(:thinking_topic, :thinking_diffusion, :thinking_core, :thinking_output) # パラメーターのキー
   end
 end
+   
