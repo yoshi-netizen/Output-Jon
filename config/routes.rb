@@ -20,11 +20,13 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # ルート パス ("/") を以下のように定義します。
-  # root "posts#index"
+  authenticated :user do
+    root to: "posts#new", as: :authenticated_root
+  end
 
-  # トップ画面（サイトのルートURL "/" にアクセスした時の設定）
-  root "home#index"
+  unauthenticated do
+    root to: "home#index", as: :unauthenticated_root
+  end
 
   resources :posts, only: [ :new, :create, :index, :show, :edit, :update, :destroy ] do
     member do
