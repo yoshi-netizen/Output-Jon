@@ -7,7 +7,7 @@ RSpec.describe "ヘッダー", type: :system do
   describe "表示の確認" do
     context "未ログイン時" do
       it "「ログイン」、「新規登録」が表示されること" do
-        visit root_path
+        visit unauthenticated_root_path
         expect(page).to have_link('ログイン')
         expect(page).to have_link('新規登録')
       end
@@ -31,7 +31,7 @@ RSpec.describe "ヘッダー", type: :system do
       click_link 'ログアウト', visible: true
       # ログアウト後の検証
       expect(page).to have_content ('Signed out successfully.')
-      expect(current_path).to eq root_path
+      expect(page).to have_current_path(unauthenticated_root_path)
       expect(page).to have_link ('ログイン')
     end
   end
@@ -40,7 +40,7 @@ RSpec.describe "ヘッダー", type: :system do
     it 'ヘッダーのロゴをクリックしたとき、ルートページへ遷移すること' do
       visit new_user_session_path # 別のページから遷移することを確認するため、あえて別の場所へ
       click_on('Output JON')
-      expect(page).to have_current_path(root_path)
+      expect(page).to have_current_path(unauthenticated_root_path)
     end
   end
 end
