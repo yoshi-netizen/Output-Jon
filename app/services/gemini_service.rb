@@ -11,7 +11,7 @@ class GeminiService
   end
 
   # 引数を個別に受け取り、プロンプトを組み立てる
-  def call(topic, diffusion, core)
+  def call(topic:, diffusion:, core:)
     # AIへの指示（システムプロンプト）をここで定義
     prompt = <<~TEXT
       あなたは思考の言語化支援サービスです。

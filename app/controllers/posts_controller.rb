@@ -10,11 +10,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      if params[:generate_ai].present? # AI生成ボタンが押されたかチェック
-        redirect_to edit_post_path(@post, ai_generate: true), notice: "初期保存しました。AI文章を生成します..."
-      else
         redirect_to new_post_path, notice: "投稿に成功しました"
-      end
     else
       render "new", status: :unprocessable_entity
     end
@@ -35,11 +31,7 @@ class PostsController < ApplicationController
   def update
     @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
-      if params[:generate_ai].present? # AI生成ボタンが押されてupdateされた場合
-        redirect_to edit_post_path(@post, ai_generate: true), notice: "保存しました。AIが思考を整理します..."
-      else
-        redirect_to post_path(@post), notice: "投稿を更新しました"
-      end
+      redirect_to post_path(@post), notice: "投稿を更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -53,11 +45,11 @@ class PostsController < ApplicationController
 
   def generate_summary
     @post = current_user.posts.find(params[:id])
-    gemini = GeminiService.new
-    @summary = gemini.call(
-      @post.thinking_topic,
-      @post.thinking_diffusion,
-      @post.thinking_core
+    gemini = GeminiService.new          # GeminiServiceクラスのインスタンスを作成
+    @summary = gemini.call(             # GeminiServiceのcallメソッドを呼び出し、レスポンスを@summaryに格納
+    topic:     @post.thinking_topic,
+    diffusion: @post.thinking_diffusion,
+    core:      @post.thinking_core
     )
     @post.thinking_output = @summary
 
