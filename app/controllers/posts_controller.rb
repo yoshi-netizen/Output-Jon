@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   end
 
   def generate_summary
-    @post = current_user.posts.find(params[:id])
+    @post = current_user.posts.new(post_params) # 新しいPostインスタンスを作成し、フォームから送信されたパラメータを設定
     gemini = GeminiService.new          # GeminiServiceクラスのインスタンスを作成
     @summary = gemini.call(             # GeminiServiceのcallメソッドを呼び出し、レスポンスを@summaryに格納
     topic:     @post.thinking_topic,

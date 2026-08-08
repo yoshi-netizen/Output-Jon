@@ -1,1 +1,2 @@
-<%= turbo_stream.update "post_thinking_output", @post.thinking_output %>
+<% # Turbo Streamsを使用して、"post_thinking_output"というIDを持つ要素の内容を@summaryで更新する %>
+<%= turbo_stream.update "post_thinking_output", @summary %>
