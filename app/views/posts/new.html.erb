@@ -59,11 +59,11 @@
         <div>
           <div class="flex items-center justify-between mb-1.5">
             <%= f.label :thinking_output, "思考を整理する", class: "text-sm font-medium text-gray-600" %>
-    <%= f.submit "AIで整理する", 
-		    formaction: generate_summary_posts_path, 
-		    formmethod: :post,
-        class: "text-sm font-medium text-white px-3 py-1.5 rounded-lg cursor-pointer transition hover:opacity-90 whitespace-nowrap",
-        style: "background-color: #da8d6c;" %>
+            <%= f.submit "AIで整理する", 
+                formaction: generate_summary_posts_path, 
+                formmethod: :post,
+                class: "text-sm font-medium text-white px-3 py-1.5 rounded-lg cursor-pointer transition hover:opacity-90 whitespace-nowrap",
+                style: "background-color: #da8d6c;" %>
           </div>
           <p class="text-xs text-gray-400 mb-1.5">「AIで整理する」ボタンをクリックすると入力内容をもとに思考を整理します。生成後に自由に編集できます。</p>
           <%= f.text_area :thinking_output,
