@@ -9,7 +9,7 @@
       <%= link_to "← 詳細に戻る", post_path(@post), class: "text-sm text-gray-400 hover:text-gray-600 transition" %>
     </div>
 
-    <%= form_with model: @post, do |f| %>
+    <%= form_with model: @post do |f| %>
 
       <%# --- エラーメッセージ表示 --- %>
       <% if @post.errors.any? %>
@@ -76,6 +76,7 @@
           <%= link_to "キャンセル", post_path(@post), class: "text-sm text-gray-400 hover:text-gray-600 transition" %>
         </div>
       </div>
+
     <% end %>
 
   </div>
