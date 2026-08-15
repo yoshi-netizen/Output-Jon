@@ -63,8 +63,8 @@ RSpec.describe "Posts", type: :request do
       expect(response).to redirect_to(new_user_session_path)
     end
 
-    it "GET /posts/:id/generate_summary は未ログインページへリダイレクトする" do
-      get generate_summary_post_path(post_record)
+    it "POST /posts/generate_summary は未ログインページへリダイレクトする" do
+      post generate_summary_posts_path
       expect(response).to redirect_to(new_user_session_path)
     end
   end
@@ -109,13 +109,6 @@ RSpec.describe "Posts", type: :request do
         end
       end
 
-      context "generate_aiパラメータがある場合" do
-        it "edit画面へai_generate=trueつきでリダイレクトする" do
-          post posts_path, params: valid_params.merge(generate_ai: "1")
-          expect(response).to redirect_to(edit_post_path(Post.last, ai_generate: true))
-        end
-      end
-
       context "無効なパラメータの場合" do
         it "422を返す" do
           post posts_path, params: { post: { thinking_topic: "" } }
@@ -137,25 +130,6 @@ RSpec.describe "Posts", type: :request do
         end
       end
 
-      context "generate_aiパラメータがある場合（AIボタン押下）" do
-        let(:ai_params) do
-          {
-            post: { thinking_topic: "AIボタン押下後のテーマ" },
-            generate_ai: "1"
-          }
-        end
-
-        it "まず投稿内容がDBに保存される" do
-          patch post_path(post_record), params: ai_params
-          expect(post_record.reload.thinking_topic).to eq("AIボタン押下後のテーマ")
-        end
-
-        it "edit画面へai_generate=trueつきでリダイレクトする" do
-          patch post_path(post_record), params: ai_params
-          expect(response).to redirect_to(edit_post_path(post_record, ai_generate: true))
-        end
-      end
-
       context "無効なパラメータの場合" do
         it "422を返す" do
           patch post_path(post_record), params: { post: { thinking_topic: "" } }
@@ -164,16 +138,23 @@ RSpec.describe "Posts", type: :request do
       end
     end
 
-    # --- generate_summary ---
-    describe "GET /posts/:id/generate_summary" do
-      it "thinking_outputがAIの結果で更新される" do
-        get generate_summary_post_path(post_record)
-        expect(post_record.reload.thinking_output).to eq("AIが生成した整理文章")
+    # --- generate_summary（生成と保存の分離） ---
+    describe "POST /posts/generate_summary" do
+      let(:ai_params) do
+        {
+          post: {
+            thinking_topic:     "テーマ",
+            thinking_diffusion: "箇条書き",
+            thinking_core:      "【壁打ち】 モヤモヤしていることを言語化してほしい"
+          }
+        }
       end
 
-      it "edit_post_pathへリダイレクトする" do
-        get generate_summary_post_path(post_record)
-        expect(response).to redirect_to(edit_post_path(post_record))
+      it "turbo_streamでAIの生成結果を返す" do
+        post generate_summary_posts_path, params: ai_params,
+             headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(response.media_type).to eq("text/vnd.turbo-stream.html")
+        expect(response.body).to include("AIが生成した整理文章")
       end
     end
 
