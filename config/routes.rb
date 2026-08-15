@@ -29,9 +29,8 @@ Rails.application.routes.draw do
   end
 
   resources :posts, only: [ :new, :create, :index, :show, :edit, :update, :destroy ] do
-    member do
-      post :generate_summary # /posts/:id/generate_summary というURLを作成
-      get :generate_summary # Turbo Frameのsrc属性からのGETリクエストを受け取るために追加
+    collection do
+      post :generate_summary # AIによる要約生成のルーティングを追加
     end
   end
 end

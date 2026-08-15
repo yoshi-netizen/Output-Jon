@@ -156,17 +156,6 @@ RSpec.describe "思考整理の投稿機能", type: :system do
     end
 
     context "「AIで整理する」ボタンを押したとき" do
-      it "フォームの内容が保存されてからAIが実行されること" do
-        fill_in '整理したいテーマ', with: 'ボタン押下前に入力したテーマ'
-        click_on 'AIで整理する'
-
-        # 非同期完了をDOMで待つ
-        expect(page).to have_content('AIが整理した文章')
-
-        # 保存されているか確認
-        expect(post.reload.thinking_topic).to eq('ボタン押下前に入力したテーマ')
-      end
-
       it "AI実行後、整理した思考エリアにAIの結果が表示されること" do
         click_on 'AIで整理する'
 
@@ -175,16 +164,16 @@ RSpec.describe "思考整理の投稿機能", type: :system do
       end
     end
 
-    context "新規作成から「内容を保存してAIで整理する」ボタンで遷移したとき" do
-      it "編集画面でAIが自動実行され、結果が表示されること" do
+    context "新規作成ページで「AIで整理する」ボタンを押したとき" do
+      it "出力エリアにAIの結果が表示されること" do
         visit new_post_path
         fill_in '整理したいテーマ', with: '新規からのテーマ'
         fill_in '思考の書き出し', with: '新規からの箇条書き'
         select '【壁打ち】 モヤモヤしていることを言語化したい', from: '整理の目的'
         click_on 'AIで整理する'
 
-        # 編集画面へ遷移しAIが自動実行される
-        expect(page).to have_field('整理した思考', with: 'AIが整理した文章')
+        # 新規ページの出力エリア（ラベル「思考を整理する」）に結果が入る
+        expect(page).to have_field('思考を整理する', with: 'AIが整理した文章')
       end
     end
   end

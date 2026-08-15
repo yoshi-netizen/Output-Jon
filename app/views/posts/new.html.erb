@@ -24,9 +24,9 @@
 
         <%# テーマ %>
         <div>
-  <%= f.label :thinking_topic, class: "inline-flex items-center text-sm font-medium text-gray-600 mb-1.5" do %>
-    整理したいテーマ<span class="text-xs font-medium ml-1 border rounded px-1" style="color: #da8d6c; border-color: #da8d6c;">必須</span>
-  <% end %>
+          <%= f.label :thinking_topic, class: "inline-flex items-center text-sm font-medium text-gray-600 mb-1.5" do %>
+            整理したいテーマ<span class="text-xs font-medium ml-1 border rounded px-1" style="color: #da8d6c; border-color: #da8d6c;">必須</span>
+          <% end %>
           <%= f.text_field :thinking_topic,
               placeholder: "例：〇〇の相談内容について・来週の進捗報告について・読んだ記事の感想(リンクでも可)",
               class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition" %>
@@ -59,7 +59,9 @@
         <div>
           <div class="flex items-center justify-between mb-1.5">
             <%= f.label :thinking_output, "思考を整理する", class: "text-sm font-medium text-gray-600" %>
-            <%= f.submit "AIで整理する", name: "generate_ai",
+            <%= f.submit "AIで整理する", 
+                formaction: generate_summary_posts_path, 
+                formmethod: :post,
                 class: "text-sm font-medium text-white px-3 py-1.5 rounded-lg cursor-pointer transition hover:opacity-90 whitespace-nowrap",
                 style: "background-color: #da8d6c;" %>
           </div>
@@ -71,7 +73,7 @@
         </div>
         <%# 保存ボタン %>
         <div class="mt-6">
-        <p class="text-xs text-gray-400 mb-2">入力途中でも保存できます。あとから編集ページで続きを編集できます。</p>
+          <p class="text-xs text-gray-400 mb-2">入力途中でも保存できます。あとから編集ページで続きを編集できます。</p>
           <%= f.submit "保存する",
               class: "w-full py-2.5 text-sm font-medium text-white rounded-lg cursor-pointer transition hover:opacity-90",
               style: "background-color: #47a971;" %>
