@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts, only: [ :new, :create, :index, :show, :edit, :update, :destroy ] do
-    collection do 
+    collection do
       post :generate_summary # AIによる要約生成のルーティングを追加
     end
   end
