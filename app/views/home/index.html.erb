@@ -6,7 +6,7 @@
     <p class="text-2xl font-bold mb-3" style="color: #47a971;">
       「また、うまく伝えられなかった…。」
     </p>
-    <p class="text-base font-medium text-gray-500 mb-10 text-left max-w-xs mx-auto">
+    <p class="text-base font-normal text-gray-500 mb-10 text-left max-w-xs mx-auto">
       ― もしかすると、思考を整理する前に<br>
       <span class="pl-20">話を始めたからかもしれません。</span>
     </p>
@@ -22,34 +22,34 @@
 <!-- 2. 最初の一歩（ワークフロー）-->
 <div class="py-16 bg-white">
   <div class="max-w-5xl mx-auto px-4">
-    <h2 class="text-xl font-medium text-center mb-10 text-gray-800">思考整理のステップ</h2>
+    <h2 class="text-xl font-normal text-center mb-10 text-gray-800">思考整理のステップ</h2>
 
     <div class="grid md:grid-cols-4 gap-4">
       <%# Step 1: 入力 %>
       <div class="p-5 bg-white border border-gray-100 rounded-xl">
-        <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium mb-4" style="background-color: #E5E6E5; color: #555;">1</div>
-        <h3 class="font-medium mb-2 text-gray-900 text-sm">テーマを入力</h3>
+        <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-normal mb-4" style="background-color: #E5E6E5; color: #555;">1</div>
+        <h3 class="font-normal mb-2 text-gray-900 text-sm">テーマを入力</h3>
         <p class="text-xs text-gray-400 leading-relaxed">整理したいテーマや、参考にしたい記事リンクを入力します。</p>
       </div>
 
       <%# Step 2: 書き出し %>
       <div class="p-5 bg-white border border-gray-100 rounded-xl">
-        <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium mb-4" style="background-color: #E5E6E5; color: #555;">2</div>
-        <h3 class="font-medium mb-2 text-gray-900 text-sm">思考を書き出す</h3>
+        <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-normal mb-4" style="background-color: #E5E6E5; color: #555;">2</div>
+        <h3 class="font-normal mb-2 text-gray-900 text-sm">思考を書き出す</h3>
         <p class="text-xs text-gray-400 leading-relaxed">頭にあるモヤモヤを、そのまま自由に書き出してみます。</p>
       </div>
 
       <%# Step 3: 目的選択 %>
       <div class="p-5 bg-white border border-gray-100 rounded-xl">
-        <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium mb-4" style="background-color: #E5E6E5; color: #555;">3</div>
-        <h3 class="font-medium mb-2 text-gray-900 text-sm">整理の目的を選ぶ</h3>
+        <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-normal mb-4" style="background-color: #E5E6E5; color: #555;">3</div>
+        <h3 class="font-normal mb-2 text-gray-900 text-sm">整理の目的を選ぶ</h3>
         <p class="text-xs text-gray-400 leading-relaxed">報連相・学びの整理・会議の振り返りなど、目的に合わせて選択します。</p>
       </div>
 
       <%# Step 4: 整理 %>
       <div class="p-5 rounded-xl border" style="background-color: #f0faf4; border-color: #47a971;">
-        <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium text-white mb-4" style="background-color: #47a971;">4</div>
-        <h3 class="font-medium mb-2 text-gray-900 text-sm">AIが思考を整理</h3>
+        <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-normal text-white mb-4" style="background-color: #47a971;">4</div>
+        <h3 class="font-normal mb-2 text-gray-900 text-sm">AIが思考を整理</h3>
         <p class="text-xs leading-relaxed" style="color: #2d7a50;">AIが入力内容をもとに思考を整理します。結果はそのまま保存・編集できます。</p>
       </div>
     </div>
@@ -61,8 +61,8 @@
 
     <div class="flex justify-center gap-4 mt-8">
       <% unless user_signed_in? %>
-        <%= link_to "無料で始める（新規登録）", new_user_registration_path, class: "px-6 py-2.5 text-sm font-medium text-white rounded-md transition", style: "background-color: #47a971;" %>
-        <%= link_to "ログイン", new_user_session_path, class: "px-6 py-2.5 text-sm font-medium rounded-md border transition", style: "color: #47a971; border-color: #47a971;" %>
+        <%= link_to "無料で始める（新規登録）", new_user_registration_path, class: "px-6 py-2.5 text-sm font-normal text-white rounded-md transition", style: "background-color: #47a971;" %>
+        <%= link_to "ログイン", new_user_session_path, class: "px-6 py-2.5 text-sm font-normal rounded-md border transition", style: "color: #47a971; border-color: #47a971;" %>
       <% end %>
     </div>
 

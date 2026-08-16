@@ -7,7 +7,7 @@
         <p class="text-sm text-gray-400 mt-1">これまでに整理した思考の記録です</p>
       </div>
       <%= link_to "＋ 新しく整理する", new_post_path,
-          class: "text-sm font-medium text-white px-4 py-2 rounded-lg transition hover:opacity-90 whitespace-nowrap",
+          class: "text-sm font-normal text-white px-4 py-2 rounded-lg transition hover:opacity-90 whitespace-nowrap",
           style: "background-color: #47a971;" %>
     </div>
 
@@ -17,7 +17,7 @@
           <li>
             <%= link_to post_path(post), class: "block bg-white border border-gray-100 rounded-xl p-5 hover:border-[#47a971] transition group" do %>
               <div class="flex items-center justify-between">
-                <p class="text-sm font-medium text-gray-900 group-hover:text-[#47a971] transition">
+                <p class="text-sm font-normal text-gray-900 group-hover:text-[#47a971] transition">
                   <%= post.thinking_topic %>
                 </p>
                 <span class="text-xs text-gray-300 ml-4 whitespace-nowrap">
@@ -36,7 +36,7 @@
       <div class="bg-white border border-gray-100 rounded-2xl p-12 text-center">
         <p class="text-sm text-gray-400 mb-6">まだ投稿がありません。<br>まずは今の気持ちを整理してみましょう！</p>
         <%= link_to "思考を整理する", new_post_path,
-            class: "text-sm font-medium text-white px-6 py-2.5 rounded-lg transition hover:opacity-90",
+            class: "text-sm font-normal text-white px-6 py-2.5 rounded-lg transition hover:opacity-90",
             style: "background-color: #47a971;" %>
       </div>
     <% end %>
