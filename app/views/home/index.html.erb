@@ -26,7 +26,7 @@
 
     <!-- 1. サービス概要セクション（ヒーローエリア）-->
     <div class="p-5 mb-20 bg-white border border-gray-100 rounded-xl">
-      <h2 class="text-2xl font-bold text-center mt-5 mb-10 text-brack">このアプリについて</h2>
+      <h2 class="text-2xl font-bold text-center mt-5 mb-10 text-black">このアプリについて</h2>
       <p class="text-lg text-gray-700 leading-relaxed mb-10 text-left md:text-center">
         「何を相談すればいいか分からない」「意見をうまく伝えられない」<br>
         そんな悩みを持つ人のための、思考整理アプリです。<br>
@@ -67,15 +67,17 @@
       </div>
     </div>
 
-    <p class="text-xm text-center text-gray-700 mt-25">
+    <p class="text-lg text-center text-gray-700 mt-25">
       報連相だけでなく、学びの整理・会議の振り返り・モヤモヤの言語化など、さまざまな場面でお使いいただけます。<br>
       まずは気軽に試してみてください。
     </p>
 
-    <div class="flex justify-center gap-4 mt-10">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
       <% unless user_signed_in? %>
-        <%= link_to "無料で始める（新規登録）", new_user_registration_path, class: "px-6 py-2.5 text-2xl font-bold rounded-md transition bg-primary text-white hover:bg-green-600" %>
-        <%= link_to "ログイン", new_user_session_path, class: "px-6 py-2.5 text-2xl font-bold rounded-md border border-primary text-primary transition hover:border-green-500 hover:text-green-500" %>
+        <%= link_to "無料で始める（新規登録）", new_user_registration_path,
+            class: "w-full sm:w-auto text-center px-6 py-2.5 text-lg sm:text-2xl font-bold rounded-md transition bg-primary text-white hover:bg-green-600" %>
+        <%= link_to "ログイン", new_user_session_path,
+            class: "w-full sm:w-auto text-center px-6 py-2.5 text-lg sm:text-2xl font-bold rounded-md border border-primary text-primary transition hover:border-green-500 hover:text-green-500" %>
       <% end %>
     </div>
 
