@@ -29,7 +29,7 @@
         <div>
           <%= f.label :thinking_topic, "整理したいテーマ", class: "block text-sm font-normal text-gray-600 mb-1.5" %>
           <%= f.text_field :thinking_topic,
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition" %>
+              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition" %>
         </div>
 
         <%# 箇条書き %>
@@ -37,7 +37,7 @@
           <%= f.label :thinking_diffusion, "思考の書き出し", class: "block text-sm font-normal text-gray-600 mb-1.5" %>
           <%= f.text_area :thinking_diffusion,
               rows: 5,
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition resize-none" %>
+              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition resize-none" %>
         </div>
 
         <%# 整理の目的 %>
@@ -49,7 +49,7 @@
               '【会議・打合せ】 決まったことと次やることを明確にしたい',
               '【壁打ち】 モヤモヤしていることを言語化したい'],
               { include_blank: '選択してください' },
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition bg-white" %>
+              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition bg-white" %>
         </div>
 
         <%# 整理した思考 + AIボタン %>
@@ -64,12 +64,11 @@
 	      </div>
             <%= f.text_area :thinking_output, 
                 rows: 10,
-                class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition resize-none" %>
+                class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition resize-none" %>
         </div>
         <div class="mt-6 flex items-center gap-3">
           <%= f.submit "更新する",
-              class: "text-sm font-normal text-white px-6 py-2.5 rounded-lg cursor-pointer transition hover:opacity-90",
-              style: "background-color: #47a971;" %>
+              class: "text-sm font-normal text-white px-6 py-2.5 rounded-lg cursor-pointer transition hover:opacity-90 bg-primary" %>
           <%= link_to "キャンセル", post_path(@post), class: "text-sm text-gray-400 hover:text-gray-600 transition" %>
         </div>
       </div>

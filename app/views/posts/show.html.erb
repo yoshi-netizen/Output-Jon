@@ -37,8 +37,7 @@
 
       <div class="flex items-center gap-3 mt-6">
         <%= link_to "編集", edit_post_path(@post),
-            class: "text-sm font-normal px-4 py-2 rounded-lg border transition",
-            style: "color: #47a971; border-color: #47a971;" %>
+            class: "text-sm font-normal px-4 py-2 rounded-lg border transition text-primary border-primary" %>
         <%= link_to "削除", post_path(@post),
             class: "text-sm font-normal text-red-400 px-4 py-2 rounded-lg border border-red-200 transition hover:bg-red-50",
             data: { turbo_method: :delete, turbo_confirm: "投稿を削除してよろしいですか？" } %>

@@ -9,24 +9,24 @@
       <div class="mb-5">
         <%= f.label :email, "メールアドレス", class: "block text-xs font-normal text-gray-600 mb-1.5" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email",
-            class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition" %>
+            class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition" %>
       </div>
 
       <div class="mb-5">
         <%= f.label :password, "パスワード", class: "block text-xs font-normal text-gray-600 mb-1.5" %>
         <%= f.password_field :password, autocomplete: "current-password",
-            class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition" %>
+            class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition" %>
       </div>
 
       <% if devise_mapping.rememberable? %>
         <div class="flex items-center gap-2 mb-6">
-          <%= f.check_box :remember_me, class: "w-4 h-4 accent-[#47a971]" %>
+          <%= f.check_box :remember_me, class: "w-4 h-4 accent-primary" %>
           <%= f.label :remember_me, "ログイン状態を保持する", class: "text-xs text-gray-500" %>
         </div>
       <% end %>
 
       <div class="mt-2">
-        <%= f.submit "ログイン", class: "w-full py-2.5 text-sm font-normal text-white rounded-lg cursor-pointer transition hover:opacity-90", style: "background-color: #47a971;" %>
+        <%= f.submit "ログイン", class: "w-full py-2.5 text-sm font-normal text-white rounded-lg cursor-pointer transition hover:opacity-90 bg-primary" %>
       </div>
 
     <% end %>

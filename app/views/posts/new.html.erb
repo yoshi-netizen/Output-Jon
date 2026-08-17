@@ -29,7 +29,7 @@
           <% end %>
           <%= f.text_field :thinking_topic,
               placeholder: "例：〇〇の相談内容について・来週の進捗報告について・読んだ記事の感想(リンクでも可)",
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition" %>
+              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition" %>
         </div>
 
         <%# 箇条書き %>
@@ -40,7 +40,7 @@
           <%= f.text_area :thinking_diffusion,
               rows: 5,
               placeholder: "例：&#13;&#10;Aの作業が少し遅れている&#13;&#10;来週中には挽回できそう&#13;&#10;懸念点をチームに共有したい".html_safe,
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition resize-none" %>
+              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition resize-none" %>
         </div>
 
         <%# 整理の目的 %>
@@ -52,7 +52,7 @@
               '【会議・打合せ】 決まったことと次やることを明確にしたい',
               '【壁打ち】 モヤモヤしていることを言語化したい'],
               { include_blank: '選択してください' },
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition bg-white" %>
+              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition bg-white" %>
         </div>
 
         <%# 整理した思考 + AIボタン %>
@@ -69,14 +69,13 @@
           <%= f.text_area :thinking_output,
               rows: 6,
               placeholder: "ここのフォームは手動で入力する必要はありません。&#13;&#10;「AIで整理する」ボタンをクリックすると自動で入力されます。&#13;&#10;もちろんご自身で入力されてもO.Kです！".html_safe,
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition resize-none" %>
+              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition resize-none" %>
         </div>
         <%# 保存ボタン %>
         <div class="mt-6">
           <p class="text-xs text-gray-400 mb-2">入力途中でも保存できます。あとから編集ページで続きを編集できます。</p>
           <%= f.submit "保存する",
-              class: "w-full py-2.5 text-sm font-normal text-white rounded-lg cursor-pointer transition hover:opacity-90",
-              style: "background-color: #47a971;" %>
+              class: "w-full py-2.5 text-sm font-normal text-white rounded-lg cursor-pointer transition hover:opacity-90 bg-primary" %>
         </div>
       </div>
     <% end %>
