@@ -1,16 +1,40 @@
 <header class="bg-white border-b border-gray-100" data-controller="menu">
   <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
-    <div class="flex w-full items-center justify-between py-4">
+    <div class="flex w-full items-center justify-between py-4 md:py-12">
       <div class="flex items-center">
 
         <!-- ロゴ -->
-        <%= link_to "Output JON", "/", class: "text-lg font-bold tracking-wide", style: "color: #47a971;" %>
+        <%= link_to "/", class: "flex items-center gap-2 md:gap-3 text-2xl md:text-5xl font-bold tracking-wide" do %>
+        <svg class="h-8 md:h-16 w-auto shrink-0 text-black" viewBox="0 0 997 895" fill="none"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M297.754 663.398C286.082 658.722 269.698 651.726 258.535 639.42C245.17 624.687 231.024 594.418 220.441 574.975C210.903 557.451 205.217 540.414 198.748 522.255C190.657 499.544 186.443 478.325 184.667 456.632C182.224 426.773 186.373 386.913 193.422 366.978C202.361 341.697 210.984 325.948 223.869 301.953C235.668 279.98 247.337 267.374 261.945 249.18C277.031 230.39 303.52 219.278 321.715 206.972C337.224 196.483 360.899 185.315 379.726 175.312C398.244 165.474 467.077 154.867 528.481 149.506C587.903 144.317 667.972 151.211 690.86 161.179C711.021 169.958 723.1 182.854 737.181 192.821C755.771 205.98 772.322 227.364 785.823 238.527C798.753 249.218 805.16 268.359 816.885 287.133C827.508 304.143 830.966 324.612 838.578 343.387C845.801 361.202 847.35 380.865 850.321 402.558C855.17 437.964 848.616 492.177 842.146 514.485C837.227 531.45 828.716 549.626 818.713 565.482C809.004 580.874 802.91 596.527 792.942 610.608C782.131 625.88 771.267 638.717 757.222 651.04C736.924 668.848 704.677 680.907 674.634 692.07C641.576 704.353 622.477 707.909 602.542 713.182C577.6 719.781 559.192 723.167 536.919 727.246C511.872 731.833 488.875 736.035 401.225 735.49C383.33 733.75 381.009 730.27 378.074 727.316C375.138 724.363 371.657 722.042 368.071 719.652" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M392.682 301.267C392.682 308.228 392.682 330.378 393.262 360.825C393.842 372.709 395.002 377.349 396.18 382.061C397.358 386.772 398.518 391.413 399.714 406.742" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M579.021 304.783C579.021 312.869 581.342 345.707 583.117 370.318C583.697 376.225 584.858 380.865 586.035 385.577C587.213 390.288 588.373 394.929 589.569 399.71" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M434.872 543.86C440.708 554.372 450.06 568.4 457.11 584.819C463.656 600.068 480.507 608.27 498.087 614.739C528.3 625.857 571.919 616.567 585.42 606.6C595.405 593.117 601.276 581.409 603.614 572.057C604.792 567.345 605.953 562.704 607.148 550.892" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M171.184 104.38C173.505 112.537 182.857 128.92 192.244 146.5C200.471 165.274 205.147 179.338 209.243 188.69C211.019 193.401 212.179 198.042 213.374 206.339" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M445.419 20C445.419 22.3204 445.419 28.1567 446.58 36.9287C450.06 44.5405 452.451 58.5686 453.031 76.7104C453.611 84.41 454.772 89.051 455.967 100.864" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M779.424 30.5474C779.424 32.8678 779.424 41.0246 778.264 53.3124C774.783 62.1196 770.072 69.1864 765.396 76.7806C763.04 80.8941 760.72 85.535 754.813 97.3483" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M888.415 206.339C890.736 206.339 896.572 204.019 905.924 199.343C910.635 196.987 915.276 194.667 919.407 192.311C923.538 189.955 927.019 187.635 930.605 181.728" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M909.51 392.679C911.83 392.679 925.788 392.679 946.285 390.939C954.02 389.198 956.341 385.717 960.437 383.924C964.533 382.131 970.334 382.131 976.311 389.163" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M923.573 582.534C924.734 582.534 925.894 582.534 929.392 582.534C932.89 582.534 938.692 582.534 943.42 583.694C948.149 584.854 951.63 587.175 965.763 593.081" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M853.257 688.009C853.257 690.33 856.737 695.006 863.171 702.02C868.445 709.034 873.156 716.101 878.412 723.115C881.348 726.648 884.829 730.129 888.415 740.747" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M737.234 765.357C737.234 766.517 737.234 767.678 737.234 775.237C737.234 782.796 737.234 796.718 737.814 806.211C738.394 815.704 739.554 820.345 740.75 832.158" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M575.506 807.547V874.348" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M410.261 814.579C412.617 819.22 403.3 837.924 389.799 850.282C386.846 853.218 384.525 856.699 381.59 859.652C378.654 862.605 375.173 864.926 368.071 867.317" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M262.596 744.263C259.115 759.451 245.087 773.514 233.344 788.738C225.187 794.609 218.086 800.481 212.829 806.915C209.894 809.868 206.413 812.189 195.795 818.095" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M181.732 663.398C167.703 665.719 151.355 672.75 134.338 680.362C122.103 683.298 109.13 685.653 97.4395 687.411C91.5505 688.009 85.7494 688.009 79.7724 688.009" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M100.867 470.027C88.0346 471.187 69.2953 478.184 54.0541 487.571C49.3604 489.927 43.5593 492.247 37.6703 493.442C31.7813 494.638 25.9801 494.638 20.0032 498.154" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M114.931 308.299C111.45 302.462 97.4219 293.11 83.341 280.805C79.8076 277.851 76.3269 275.531 72.7935 273.175C69.2601 270.82 65.7794 268.499 55.1615 259.077" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M614.18 37.5793V100.864" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Output JON</span>
+        <% end %>
 
         <!-- ナビゲーションリンク (デスクトップ) -->
         <div class="ml-10 hidden space-x-6 sm:block">
         <% if user_signed_in? %>
-          <%= link_to "思考整理", new_post_path, class: "text-sm text-gray-400 hover:text-gray-700 transition" %>
-          <%= link_to "思考一覧", posts_path, class: "text-sm text-gray-400 hover:text-gray-700 transition" %>
+          <%= link_to "思考整理", new_post_path, class: "text-sm text-gray-400 font-bold hover:text-gray-700 transition" %>
+          <%= link_to "思考一覧", posts_path, class: "text-sm text-gray-400 font-bold hover:text-gray-700 transition" %>
         <% end %>
         </div>
       </div>
@@ -38,11 +62,11 @@
             </div>
           </div>
 
-          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: "delete" }, class: "hidden sm:block text-sm font-medium text-white px-4 py-2 rounded-md transition", style: "background-color: #47a971;" %>
+          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: "delete" }, class: "hidden sm:block text-sm font-bold text-white px-4 py-2 rounded-md transition bg-primary" %>
 
         <% else %>
-          <%= link_to "ログイン", new_user_session_path, class: "text-sm font-medium px-4 py-2 rounded-md border transition", style: "color: #47a971; border-color: #47a971;" %>
-          <%= link_to "新規登録", new_user_registration_path, class: "text-sm font-medium text-white px-4 py-2 rounded-md transition", style: "background-color: #47a971;" %>
+          <%= link_to "ログイン", new_user_session_path, class: "text-sm font-bold px-4 py-2 rounded-md border transition text-primary border-primary" %>
+          <%= link_to "新規登録", new_user_registration_path, class: "text-sm font-bold text-white px-4 py-2 rounded-md transition bg-primary" %>
         <% end %>
       </div>
     </div>

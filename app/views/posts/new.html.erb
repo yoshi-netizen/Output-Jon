@@ -1,9 +1,9 @@
-<div class="min-h-screen bg-[#f5f5f3] py-12 px-4">
+<div class="grow bg-primary py-12 px-4">
   <div class="max-w-2xl mx-auto">
 
     <div class="mb-8">
-      <h1 class="text-2xl font-bold text-gray-900 tracking-tight">思考の整理</h1>
-      <p class="text-ms text-gray-400 mt-1">今、気になっていることを整理してみませんか？</p>
+      <h1 class="text-2xl font-bold text-white tracking-tight">思考の整理</h1>
+      <p class="text-sm text-lime-100 mt-1">今、気になっていることを整理してみませんか？</p>
     </div>
 
     <%= form_with model: @post do |f| %>
@@ -11,7 +11,7 @@
       <%# --- エラーメッセージ表示 --- %>
       <% if @post.errors.any? %>
         <div id="error_explanation" class="text-red-500 border border-red-200 bg-red-50 p-4 mb-6 rounded-xl text-sm">
-          <p class="font-medium mb-1"><%= @post.errors.count %>件のエラーにより保存できませんでした</p>
+          <p class="font-normal mb-1"><%= @post.errors.count %>件のエラーにより保存できませんでした</p>
           <ul class="space-y-0.5">
             <% @post.errors.full_messages.each do |message| %>
               <li class="text-red-400">・<%= message %></li>
@@ -24,59 +24,57 @@
 
         <%# テーマ %>
         <div>
-          <%= f.label :thinking_topic, class: "inline-flex items-center text-sm font-medium text-gray-600 mb-1.5" do %>
-            整理したいテーマ<span class="text-xs font-medium ml-1 border rounded px-1" style="color: #da8d6c; border-color: #da8d6c;">必須</span>
+          <%= f.label :thinking_topic, class: "inline-flex items-center text-sm font-bold text-gray-600 mb-1.5" do %>
+            整理したいテーマ<span class="text-xs font-bold ml-1 border rounded px-1 text-[#da8d6c] border-[#da8d6c]" >必須</span>
           <% end %>
           <%= f.text_field :thinking_topic,
               placeholder: "例：〇〇の相談内容について・来週の進捗報告について・読んだ記事の感想(リンクでも可)",
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition" %>
+              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition" %>
         </div>
 
         <%# 箇条書き %>
         <div>
-          <%= f.label :thinking_diffusion, "思考の書き出し", class: "block text-sm font-medium text-gray-600 mb-1.5" %>
+          <%= f.label :thinking_diffusion, "思考の書き出し", class: "block text-sm font-bold text-gray-600 mb-1.5" %>
           <p class="text-xs text-gray-400 mb-1.5">頭にあること、現在の状況などをそのまま書き出してください。</p>
           <p class="text-xs text-gray-400 mb-1.5">無理に文章にしようとせずに箇条書きで書くと書き出しやすいのでオススメです。</p>
           <%= f.text_area :thinking_diffusion,
               rows: 5,
               placeholder: "例：&#13;&#10;Aの作業が少し遅れている&#13;&#10;来週中には挽回できそう&#13;&#10;懸念点をチームに共有したい".html_safe,
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition resize-none" %>
+              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition resize-none" %>
         </div>
 
         <%# 整理の目的 %>
         <div>
-          <%= f.label :thinking_core, "整理の目的", class: "block text-sm font-medium text-gray-600 mb-1.5" %>
+          <%= f.label :thinking_core, "整理の目的", class: "block text-sm font-bold text-gray-600 mb-1.5" %>
           <%= f.select :thinking_core,
               ['【報連相】 どう伝えればいいか整理したい',
               '【学び・感想】 記事や講演の内容を自分の血肉にしたい',
               '【会議・打合せ】 決まったことと次やることを明確にしたい',
               '【壁打ち】 モヤモヤしていることを言語化したい'],
               { include_blank: '選択してください' },
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition bg-white" %>
+              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition bg-white" %>
         </div>
 
         <%# 整理した思考 + AIボタン %>
         <div>
           <div class="flex items-center justify-between mb-1.5">
-            <%= f.label :thinking_output, "思考を整理する", class: "text-sm font-medium text-gray-600" %>
+            <%= f.label :thinking_output, "思考を整理する", class: "text-sm font-bold text-gray-600" %>
             <%= f.submit "AIで整理する", 
                 formaction: generate_summary_posts_path, 
                 formmethod: :post,
-                class: "text-sm font-medium text-white px-3 py-1.5 rounded-lg cursor-pointer transition hover:opacity-90 whitespace-nowrap",
-                style: "background-color: #da8d6c;" %>
+                class: "text-sm font-bold text-white px-3 py-1.5 rounded-lg cursor-pointer transition hover:opacity-90 whitespace-nowrap bg-[#da8d6c]" %>
           </div>
           <p class="text-xs text-gray-400 mb-1.5">「AIで整理する」ボタンをクリックすると入力内容をもとに思考を整理します。生成後に自由に編集できます。</p>
           <%= f.text_area :thinking_output,
               rows: 6,
               placeholder: "ここのフォームは手動で入力する必要はありません。&#13;&#10;「AIで整理する」ボタンをクリックすると自動で入力されます。&#13;&#10;もちろんご自身で入力されてもO.Kです！".html_safe,
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#47a971] transition resize-none" %>
+              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition resize-none" %>
         </div>
         <%# 保存ボタン %>
         <div class="mt-6">
           <p class="text-xs text-gray-400 mb-2">入力途中でも保存できます。あとから編集ページで続きを編集できます。</p>
           <%= f.submit "保存する",
-              class: "w-full py-2.5 text-sm font-medium text-white rounded-lg cursor-pointer transition hover:opacity-90",
-              style: "background-color: #47a971;" %>
+              class: "w-full py-2.5 text-sm font-bold text-white rounded-lg cursor-pointer transition hover:opacity-90 bg-primary" %>
         </div>
       </div>
     <% end %>
