@@ -62,11 +62,11 @@
             </div>
           </div>
 
-          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: "delete" }, class: "hidden sm:block text-sm font-normal text-white px-4 py-2 rounded-md transition bg-primary" %>
+          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: "delete" }, class: "hidden sm:block text-sm font-bold text-white px-4 py-2 rounded-md transition bg-primary" %>
 
         <% else %>
-          <%= link_to "ログイン", new_user_session_path, class: "text-sm font-normal px-4 py-2 rounded-md border transition text-primary border-primary" %>
-          <%= link_to "新規登録", new_user_registration_path, class: "text-sm font-normal text-white px-4 py-2 rounded-md transition bg-primary" %>
+          <%= link_to "ログイン", new_user_session_path, class: "text-sm font-bold px-4 py-2 rounded-md border transition text-primary border-primary" %>
+          <%= link_to "新規登録", new_user_registration_path, class: "text-sm font-bold text-white px-4 py-2 rounded-md transition bg-primary" %>
         <% end %>
       </div>
     </div>

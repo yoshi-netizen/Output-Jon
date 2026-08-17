@@ -1,35 +1,35 @@
-<div class="min-h-screen bg-[#f5f5f3] py-12 px-4">
+<div class="grow bg-primary py-12 px-4">
   <div class="max-w-2xl mx-auto">
 
     <div class="flex items-center justify-between mb-8">
       <div>
-        <h1 class="text-2xl font-bold text-gray-900 tracking-tight">思考の詳細</h1>
-        <p class="text-sm text-gray-400 mt-1"><%= @post.created_at.strftime("%Y年%m月%d日") %></p>
+        <h1 class="text-2xl font-bold text-white tracking-tight">思考の詳細</h1>
+        <p class="text-sm text-lime-100 mt-1"><%= @post.created_at.strftime("%Y年%m月%d日") %></p>
       </div>
-      <%= link_to "← 一覧に戻る", posts_path, class: "text-sm text-gray-400 hover:text-gray-600 transition" %>
+      <%= link_to "← 一覧に戻る", posts_path, class: "text-sm text-white hover:text-lime-200 transition" %>
     </div>
 
     <div class="bg-white border border-gray-100 rounded-2xl p-6 space-y-6">
 
       <div>
-        <p class="text-sm font-normal text-gray-600 mb-1.5">整理したいテーマ</p>
+        <p class="text-sm font-bold text-gray-700 mb-1.5">整理したいテーマ</p>
         <p class="text-base text-gray-900"><%= @post.thinking_topic %></p>
       </div>
 
       <div class="border-t border-gray-100 pt-6">
-        <p class="text-sm font-normal text-gray-600 mb-1.5">書き出した思考</p>
+        <p class="text-sm font-bold text-gray-700 mb-1.5">書き出した思考</p>
         <div class="text-sm text-gray-500 leading-relaxed">
           <%= simple_format(@post.thinking_diffusion) %>
         </div>
       </div>
 
       <div class="border-t border-gray-100 pt-6">
-        <p class="text-sm font-normal text-gray-600 mb-1.5">整理の目的</p>
+        <p class="text-sm font-bold text-gray-700 mb-1.5">整理の目的</p>
         <p class="text-sm text-gray-500"><%= @post.thinking_core %></p>
       </div>
 
       <div class="border-t border-gray-100 pt-6">
-        <p class="text-sm font-normal text-gray-600 mb-1.5">整理した思考</p>
+        <p class="text-sm font-bold text-gray-700 mb-1.5">整理した思考</p>
         <div class="text-sm text-gray-500 leading-relaxed">
           <%= simple_format(@post.thinking_output) %>
         </div>
@@ -37,9 +37,9 @@
 
       <div class="flex items-center gap-3 mt-6">
         <%= link_to "編集", edit_post_path(@post),
-            class: "text-sm font-normal px-4 py-2 rounded-lg border transition text-primary border-primary" %>
+            class: "text-sm font-bold px-4 py-2 rounded-lg border transition text-primary border-primary" %>
         <%= link_to "削除", post_path(@post),
-            class: "text-sm font-normal text-red-400 px-4 py-2 rounded-lg border border-red-200 transition hover:bg-red-50",
+            class: "text-sm font-bold text-red-400 px-4 py-2 rounded-lg border border-red-200 transition hover:bg-red-50",
             data: { turbo_method: :delete, turbo_confirm: "投稿を削除してよろしいですか？" } %>
       </div>
     </div>

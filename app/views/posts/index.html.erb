@@ -1,10 +1,10 @@
-<div class="min-h-screen bg-[#f5f5f3] py-12 px-4">
+<div class="grow bg-primary py-12 px-4">
   <div class="max-w-2xl mx-auto">
 
     <div class="flex items-center justify-between mb-8">
       <div>
-        <h1 class="text-2xl font-bold text-gray-900 tracking-tight">整理した思考一覧</h1>
-        <p class="text-sm text-gray-400 mt-1">これまでに整理した思考の記録です</p>
+        <h1 class="text-2xl font-bold text-white tracking-tight">整理した思考一覧</h1>
+        <p class="text-sm text-lime-100 mt-1">これまでに整理した思考の記録です</p>
       </div>
       <%= link_to "＋ 新しく整理する", new_post_path,
           class: "text-sm font-normal text-white px-4 py-2 rounded-lg transition hover:opacity-90 whitespace-nowrap bg-primary" %>
@@ -16,15 +16,15 @@
           <li>
             <%= link_to post_path(post), class: "block bg-white border border-gray-100 rounded-xl p-5 hover:border-primary transition group" do %>
               <div class="flex items-center justify-between">
-                <p class="text-sm font-normal text-gray-900 group-hover:text-primary transition">
+                <p class="text-sm font-bold text-gray-900 group-hover:text-primary transition">
                   <%= post.thinking_topic %>
                 </p>
-                <span class="text-xs text-gray-300 ml-4 whitespace-nowrap">
+                <span class="text-xs text-gray-400 ml-4 whitespace-nowrap">
                   <%= post.created_at.strftime("%Y/%m/%d") %>
                 </span>
               </div>
               <% if post.thinking_core.present? %>
-                <p class="text-xs text-gray-400 mt-1.5"><%= post.thinking_core %></p>
+                <p class="text-xs text-gray-700 mt-1.5"><%= post.thinking_core %></p>
               <% end %>
             <% end %>
           </li>

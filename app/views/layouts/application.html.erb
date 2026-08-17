@@ -25,12 +25,14 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <%= render 'layouts/header' %> 
+  <body class="min-h-dvh flex flex-col">
+    <%= render 'layouts/header' %>
     <div class="max-w-4xl mx-auto px-4 mt-4">
       <p class="notice text-green-600 mb-2"><%= notice %></p>
       <p class="alert text-red-600 mb-2"><%= alert %></p>
     </div>
-    <%= yield %>
+    <main class="grow flex flex-col">
+      <%= yield %>
+    </main>
   </body>
 </html>

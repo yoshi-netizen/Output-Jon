@@ -1,12 +1,12 @@
-<div class="min-h-screen bg-[#f5f5f3] py-12 px-4">
+<div class="grow bg-primary py-12 px-4">
   <div class="max-w-2xl mx-auto">
 
     <div class="flex items-center justify-between mb-8">
       <div>
-        <h1 class="text-2xl font-bold text-gray-900 tracking-tight">投稿の編集</h1>
-        <p class="text-sm text-gray-400 mt-1">内容を修正して更新してください</p>
+        <h1 class="text-2xl font-bold text-white tracking-tight">投稿の編集</h1>
+        <p class="text-sm text-lime-100 mt-1">内容を修正して更新してください</p>
       </div>
-      <%= link_to "← 詳細に戻る", post_path(@post), class: "text-sm text-gray-400 hover:text-gray-600 transition" %>
+      <%= link_to "← 詳細に戻る", post_path(@post), class: "text-sm text-white hover:text-lime-200 transition" %>
     </div>
 
     <%= form_with model: @post do |f| %>
