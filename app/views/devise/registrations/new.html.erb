@@ -1,4 +1,4 @@
-<div class="grow flex items-center justify-center bg-[#f5f5f3] py-16 px-4">
+<div class="grow flex items-center justify-center bg-primary py-16 px-4">
   <div class="w-full max-w-sm bg-white border border-gray-100 rounded-2xl p-8">
 
     <h2 class="text-xl font-bold text-gray-900 mb-1 tracking-tight">新規登録</h2>
@@ -32,6 +32,16 @@
         <p class="text-xs font-normal text-gray-500 leading-relaxed">
           ※本サービスをご利用いただくにあたり、下記の内容をあらかじめご了承ください。入力した内容はAIの応答生成に使用され、学習データとして利用される場合があります。個人情報や機密情報の入力はお控えいただくようお願いします。
         </p>
+      </div>
+
+      <div class="flex items-center gap-2 mb-6">
+        <%= f.check_box :agreement, checked: false %>
+        <%= f.label :agreement, class: "text-sm text-gray-600" do %>
+          <%= link_to "利用規約", "/terms", target: "_blank", class: "underline text-primary" %>
+          と
+          <%= link_to "プライバシーポリシー", "/privacy_policy", target: "_blank", class: "underline text-primary" %>
+          に同意する
+        <% end %>
       </div>
 
       <div>
