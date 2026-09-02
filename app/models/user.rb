@@ -4,8 +4,4 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :rememberable, :validatable
   has_many :posts, dependent: :destroy
   validates :terms_accepted_at, acceptance: true, on: :create
-
-
-
-
 end
