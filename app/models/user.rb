@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # 新規登録時の同意を必須とする
   validates_acceptance_of :terms_agreed, acceptance: true, allow_nil: false, on: [:create, :update]
 
-  before_create :record_terms_accepted_at
+  before_save :record_terms_accepted_at
 
 
   CURRENT_TERMS_UPDATED_AT = Time.utc(2026, 9, 1, 0, 0, 0)

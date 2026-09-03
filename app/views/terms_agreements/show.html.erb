@@ -1,37 +1,46 @@
 <div class="grow flex items-center justify-center bg-primary py-16 px-4">
   <div class="w-full max-w-sm bg-white border border-gray-100 rounded-2xl p-8">
-
-    <h2 class="text-xl font-bold text-gray-900 mb-1 tracking-tight">規約への同意のお願い</h2>
-    <p class="text-xs text-gray-400 mb-8">利用規約とプライバシーポリシーをご確認ください</p>
+    <h1 class="text-2xl font-bold text-gray-900 mb-8 tracking-tight">規約同意のお願い</h1>
+    <p class="mb-4">
+      利用規約が更新されました。
+    </p>
+    <p class="mb-4">
+      当サービスを利用するには、利用規約とプライバシーポリシーへの同意が必要です。
+    </p>
+    <p class="mb-4">
+      以下のリンク先で内容をご確認ください。
+    </p>
+    <ul class="list-disc ml-6">
+      <li>
+        <p class="mb-4">
+          <%= link_to "/terms", target: "_blank", class: "underline text-primary" do %>
+            利用規約を確認する<br>（利用規約ページが開きます）
+          <% end %>
+        </p>
+      </li>
+      <li>
+        <p class="mb-4">
+          <%= link_to "/privacy-policy", target: "_blank", class: "underline text-primary" do %>
+            プライバシーポリシーを確認する<br>（プライバシーポリシーページが開きます）
+          <% end %>
+        </p>
+      </li>
+    </ul>
+    <p class="mb-4">
+      同意いただける場合は、下記のチェックボックスにチェックを入れて、同意して続けるボタンを押してください。  
+    </p>
 
     <%= form_with model: @user, url: terms_agreement_path, method: :patch do |f| %>
       <%= render "devise/shared/error_messages", resource: @user %>
 
-      <div class="mb-6 p-4 bg-[#f5f5f3] rounded-lg">
-        <p class="text-xs font-normal text-gray-500 leading-relaxed">
-          ※本サービスをご利用いただくにあたり、下記の内容をあらかじめご了承ください。入力した内容はAIの応答生成に使用され、学習データとして利用される場合があります。個人情報や機密情報の入力はお控えいただくようお願いします。
-        </p>
-      </div>
-
       <div class="flex items-center gap-2 mb-6">
-        <%= f.check_box :terms_agreed %>
+        <%= f.check_box :terms_agreed, checked: false %>
         <%= f.label :terms_agreed, class: "text-sm text-gray-600" do %>
-          <%= link_to "利用規約", "/terms", target: "_blank", class: "underline text-primary" %>
-          と
-          <%= link_to "プライバシーポリシー", "/privacy_policy", target: 
-      </div>
-
-      <div class="flex items-center gap-2 mb-6">
-        <%= f.check_box :terms_agreed %>
-        <%= f.label :terms_agreed, class: "text-sm text-gray-600" do %>
-          <%= link_to "利用規約", "/terms", target: "_blank", class: "underline text-primary" %>
-          と
-          <%= link_to "プライバシーポリシー", "/privacy_policy", target: "_blank", class: "underline text-primary" %>
-          に同意する
+          利用規約とプライバシーポリシーに同意する
         <% end %>
       </div>
 
-      <%= f.submit "同意して続ける", class: "w-full py-2.5 text-sm font-normal text-white rounded-lg cursor-pointer transition hover:opacity-90 bg-primary" %>
+      <%= f.submit "同意して続ける", class: "w-full py-2.5 text-sm font-normal text-white rounded-lg hover:opacity-90 bg-primary" %>
     <% end %>
 
   </div>

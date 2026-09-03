@@ -10,8 +10,8 @@ class TermsAgreementsController < ApplicationController
     @user = current_user 
     @user.assign_attributes(terms_agreement_params) # フォームから送信されたパラメータをユーザーに割り当てる
 
-    if @user.save
-      redirect_to new_post_path, success: "ご同意ありがとうございます。"
+    if @user.update(terms_agreement_params)
+      redirect_to new_post_path, success: "同意ありがとうございます。"
     else
       render :show, status: :unprocessable_entity
     end
