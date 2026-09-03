@@ -5,10 +5,11 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   # 新規登録時の同意を必須とする
-  validates_acceptance_of :terms_agreed, acceptance: true, allow_nil: false, on: [:create, :update]
+  validates_acceptance_of :terms_agreed, acceptance: true, allow_nil: false, on: [:create, :terms_agreement]
 
-  before_save :record_terms_accepted_at
+  attribute :terms_agreed, :boolean, default: false
 
+  before_save :record_terms_accepted_at, if: :terms_agreed?
 
   CURRENT_TERMS_UPDATED_AT = Time.utc(2026, 9, 1, 0, 0, 0)
 
