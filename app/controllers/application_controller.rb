@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   # ログイン済みユーザーが最新の利用規約に同意していない場合、利用規約同意ページにリダイレクトする
-  before_action :require_terms_agreement 
+  before_action :require_terms_agreement
 
   # フラッシュメッセージのタイプを追加
   add_flash_types :success, :danger
@@ -18,10 +18,10 @@ class ApplicationController < ActionController::Base
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:terms_agreed])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :terms_agreed ])
   end
 
-  def require_terms_agreement 
+  def require_terms_agreement
     return unless user_signed_in?                   # ログインしていない場合は何もしない
     return if devise_controller?                    # ログアウト等を塞がないため
     return if current_user.agreed_to_current_terms? # ログイン済みユーザーが最新の利用規約に同意している場合は何もしない

@@ -78,7 +78,7 @@ RSpec.describe "レイアウト共通要素", type: :system do
       before { login(user) }
 
       it "利用規約リンクをクリックすると利用規約ページが表示されること" do
-        within("footer") { click_link "利用規約" } 
+        within("footer") { click_link "利用規約" }
         expect(page).to have_current_path(terms_path)
       end
 

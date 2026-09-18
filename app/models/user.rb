@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   # 新規登録時の同意を必須とする
-  validates_acceptance_of :terms_agreed, acceptance: true, allow_nil: false, on: [:create, :terms_agreement]
+  validates_acceptance_of :terms_agreed, acceptance: true, allow_nil: false, on: [ :create, :terms_agreement ]
 
   attribute :terms_agreed, :boolean, default: false
 

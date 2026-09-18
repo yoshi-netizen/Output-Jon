@@ -6,9 +6,9 @@ RSpec.describe "利用規約同意画面で", type: :request do
   before do
     user.update_column(:terms_accepted_at, nil)
   end
-  
+
   context "未ログインの場合" do
-    it "ログイン画面へリダイレクトされる" do        # authenticate_user!の確認 
+    it "ログイン画面へリダイレクトされる" do        # authenticate_user!の確認
       get terms_agreement_path
       expect(response).to redirect_to new_user_session_path
     end
