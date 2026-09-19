@@ -15,7 +15,7 @@ RSpec.describe "ログイン・ログアウトと同意日時", type: :request d
   # forget_me!も同様にsave(validate: false)で保存され、
   # expire_all_remember_me_on_sign_out=trueのためサインアウトのたびに必ず呼ばれる
   it "ログアウトしても、同意日時が更新されないこと" do
-    sign_in user
+    post user_session_path, params: { user: { email: user.email, password: "password" } }
     delete destroy_user_session_path
     expect(user.reload.terms_accepted_at).to be_nil
   end
