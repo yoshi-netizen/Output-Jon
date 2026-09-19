@@ -28,6 +28,11 @@ Rails.application.routes.draw do
     root to: "home#index", as: :unauthenticated_root
   end
 
+  get "/terms", to: "pages#terms"
+  get "/privacy_policy", to: "pages#privacy_policy"
+
+  resource :terms_agreement, only: [ :show, :update ]
+
   resources :posts, only: [ :new, :create, :index, :show, :edit, :update, :destroy ] do
     collection do
       post :generate_summary # AIによる要約生成のルーティングを追加
