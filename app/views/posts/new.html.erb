@@ -6,7 +6,7 @@
       <p class="text-sm text-lime-100 mt-1">今、気になっていることを整理してみませんか？</p>
     </div>
 
-    <%= form_with model: @post do |f| %>
+    <%= form_with model: @post, data: { controller: "loading" } do |f| %>
 
       <%# --- エラーメッセージ表示 --- %>
       <% if @post.errors.any? %>
