@@ -59,9 +59,10 @@
         <div>
           <div class="flex items-center justify-between mb-1.5">
             <%= f.label :thinking_output, "思考を整理する", class: "text-sm font-bold text-gray-600" %>
-            <%= f.submit "AIで整理する", 
-                formaction: generate_summary_posts_path, 
+            <%= f.button "AIで整理する",
+                formaction: generate_summary_posts_path,
                 formmethod: :post,
+                data: { turbo_submits_with: '<span class="inline-flex items-center gap-1"><svg class="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>整理中…</span>' },
                 class: "text-sm font-bold text-white px-3 py-1.5 rounded-lg cursor-pointer transition hover:opacity-90 whitespace-nowrap bg-[#da8d6c]" %>
           </div>
           <p class="text-xs text-gray-400 mb-1.5">「AIで整理する」ボタンをクリックすると入力内容をもとに思考を整理します。生成後に自由に編集できます。</p>
