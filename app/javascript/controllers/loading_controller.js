@@ -1,7 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  connect() {
-    console.log("loading controller connected", this.element)
+  static targets = ["button", "label", "spinner"]
+
+  start(event) {
+    if (event.detail.formSubmission.submitter !== this.buttonTarget) return    // 押されたボタンが「AIで整理する」か確認
+    this.labelTarget.classList.add("hidden")
+    this.spinnerTarget.classList.remove("hidden")
+  }
+
+  end() {
+    this.labelTarget.classList.remove("hidden")
+    this.spinnerTarget.classList.add("hidden")
   }
 }
