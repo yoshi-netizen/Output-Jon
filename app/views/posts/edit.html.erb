@@ -59,7 +59,7 @@
         <%# 整理した思考 + AIボタン %>
         <div>
           <div class="flex items-center justify-between mb-1.5">
-            <%= f.label :thinking_output, "思考を整理する", class: "text-sm font-bold text-gray-600" %>
+            <%= f.label :thinking_output, "整理した思考", class: "text-sm font-bold text-gray-600" %>
               <%= f.button formaction: generate_summary_posts_path,
                           formmethod: :post,
                           data: { loading_target: "button" },
