@@ -6,9 +6,6 @@ class ApplicationController < ActionController::Base
   # ログイン済みユーザーが最新の利用規約に同意していない場合、利用規約同意ページにリダイレクトする
   before_action :require_terms_agreement
 
-  # フラッシュメッセージのタイプを追加
-  add_flash_types :success, :danger
-
   # ログイン後の遷移先を投稿作成ページに設定
   # deviseのデフォルトではルートページに設定されているため
   def after_sign_in_path_for(resource)
