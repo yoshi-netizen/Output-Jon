@@ -10,8 +10,9 @@ class TermsAgreementsController < ApplicationController
     @user = current_user
     @user.assign_attributes(terms_agreement_params)
     if @user.save(context: :terms_agreement)
-      redirect_to new_post_path, notice: "同意頂きありがとうございます。"
+      redirect_to new_post_path, notice: "同意頂きありがとうございます"
     else
+      flash.now[:alert] = "サービスのご利用には、規約に同意頂く必要があります"
       render :show, status: :unprocessable_entity
     end
   end
