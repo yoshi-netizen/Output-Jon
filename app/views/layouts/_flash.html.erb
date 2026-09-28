@@ -1,14 +1,30 @@
 <div class="sticky top-4 z-50 h-0 ">
   <div class="mx-auto mt-4 flex max-w-md flex-col gap-2 px-8">
     <% if notice.present? %>
-      <div class="rounded-xl border border-green-500 bg-green-50 px-4 py-3 text-sm text-green-700 shadow-lg",
-           data-controller="flash">
+      <div class="rounded-xl border border-green-500 bg-green-50 px-4 py-3 text-sm text-green-700 shadow-lg flex flex-row"
+           role="status"
+           data-controller="flash"
+           data-auto-dismiss
+           data-turbo-temporary>
         <%= notice %>
+        <button type="button"
+          class="cursor-pointer ml-auto"
+          data-action="click->flash#close">
+          ×
+        </button>
       </div>
-      <% end %>
+    <% end %>
     <% if alert.present? %>
-      <div class="rounded-xl border border-red-500 bg-red-50 px-4 py-3 text-sm text-red-700 shadow-lg">
+      <div class="rounded-xl border border-red-500 bg-red-50 px-4 py-3 text-sm text-red-700 shadow-lg flex flex-row relative"
+           role="alert"
+           data-controller="flash"
+           data-turbo-temporary>
         <%= alert %>
+        <button type="button"
+          class="cursor-pointer ml-auto" 
+          data-action="click->flash#close">
+          ×
+        </button>
       </div>
     <% end %>
   </div>
