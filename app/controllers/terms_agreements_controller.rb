@@ -13,7 +13,7 @@ class TermsAgreementsController < ApplicationController
       redirect_to new_post_path, notice: "同意頂きありがとうございます"
     else
       flash.now[:alert] = "サービスのご利用には、規約に同意頂く必要があります"
-      render :show, status: :unprocessable_entity
+      render :show, status: :unprocessable_content
     end
   end
 

@@ -5,6 +5,6 @@ module LoginMacros
     fill_in 'パスワード', with: 'password'
     click_button 'ログイン'
 
-    expect(page).to have_content 'Signed in successfully.'
+    expect(page).to have_content I18n.t('devise.sessions.signed_in')
   end
 end

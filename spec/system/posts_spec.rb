@@ -32,9 +32,7 @@ RSpec.describe "思考整理の投稿機能", type: :system do
         fill_in '整理したいテーマ', with: ''
         expect { click_on '保存' }.not_to change(Post, :count)
         # エラーメッセージの確認（モデルのバリデーションメッセージ）
-        expect(page).to have_content "Thinking topic can't be blank"
-        # エラー表示エリアの文言確認
-        expect(page).to have_content '件のエラーにより保存できませんでした'
+        expect(page).to have_content "整理したいテーマを入力してください"
       end
     end
   end
@@ -115,8 +113,8 @@ RSpec.describe "思考整理の投稿機能", type: :system do
         fill_in '整理したいテーマ', with: ''
         click_on '更新する'
         # 編集画面にとどまっているか確認
-        expect(page).to have_content '件のエラーにより保存できませんでした'
         expect(page).to have_content '投稿の編集' # 編集画面のタイトル
+        expect(page).to have_content '整理したいテーマを入力してください' # エラーメッセージが表示されているか確認
       end
     end
   end

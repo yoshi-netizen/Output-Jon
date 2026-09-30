@@ -44,7 +44,7 @@ RSpec.describe "レイアウト共通要素", type: :system do
       it 'ログアウトをクリックするとログアウトし、ルートページへリダイレクトされること' do
         login(user)
         within("header") { click_link 'ログアウト', visible: true }
-        expect(page).to have_content ('Signed out successfully.')
+        expect(page).to have_content I18n.t('devise.sessions.signed_out')
         expect(page).to have_current_path(unauthenticated_root_path)
         expect(page).to have_link ('ログイン')
       end
