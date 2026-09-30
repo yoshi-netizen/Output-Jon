@@ -15,7 +15,6 @@
       <%# --- エラーメッセージ表示 --- %>
       <% if @post.errors.any? %>
         <div id="error_explanation" class="text-red-500 border border-red-200 bg-red-50 p-4 mb-6 rounded-xl text-sm">
-          <p class="font-normal mb-1"><%= @post.errors.count %>件のエラーにより保存できませんでした</p>
           <ul class="space-y-0.5">
             <% @post.errors.full_messages.each do |message| %>
               <li class="text-red-400">・<%= message %></li>

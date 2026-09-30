@@ -90,7 +90,7 @@ ja:
   errors:
     format: "%{attribute}%{message}"
     messages:
-      accepted: に同意の上でチェックを入れてください
+      accepted: に同意の上でチェックを入れてください                     # 【変更】文言をより具体的にした
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません
       empty: を入力してください
@@ -101,7 +101,7 @@ ja:
       greater_than_or_equal_to: は%{count}以上の値にしてください
       in: は%{count}の範囲に含めてください
       inclusion: は一覧にありません
-      invalid: は不正な値です
+      invalid: は登録できませんでした。入力内容をご確認ください            # 【変更】存在するかを明示しない文言に変更
       less_than: は%{count}より小さい値にしてください
       less_than_or_equal_to: は%{count}以下の値にしてください
       model_invalid: "バリデーションに失敗しました: %{errors}"
@@ -112,7 +112,7 @@ ja:
       password_too_long: が長すぎます
       present: は入力しないでください
       required: を入力してください
-      taken: はすでに存在します
+      taken: は登録できませんでした。入力内容をご確認ください               # 【変更】存在するかを明示しない文言に変更
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
       wrong_length: は%{count}文字で入力してください
