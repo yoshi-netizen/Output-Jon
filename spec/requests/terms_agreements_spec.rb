@@ -42,8 +42,12 @@ RSpec.describe "利用規約同意画面で", type: :request do
         expect(user.reload.terms_accepted_at).to be_nil
       end
 
+      it "リダイレクトされない" do
+        expect(response).to have_http_status(:unprocessable_content)
+      end
+
       it "エラーメッセージが返る" do
-        expect(response.body).to include("Terms agreed must be accepted")
+        expect(user.errors).to be_of_kind(:terms_agreed, :accepted)
       end
     end
   end

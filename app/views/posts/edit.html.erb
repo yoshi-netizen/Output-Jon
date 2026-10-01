@@ -18,7 +18,6 @@
       <%# --- エラーメッセージ表示 --- %>
       <% if @post.errors.any? %>
         <div id="error_explanation" class="text-red-500 border border-red-200 bg-red-50 p-4 mb-6 rounded-xl text-sm">
-          <p class="font-normal mb-1"><%= @post.errors.count %>件のエラーにより保存できませんでした</p>
           <ul class="space-y-0.5">
             <% @post.errors.full_messages.each do |message| %>
               <li class="text-red-400">・<%= message %></li>
@@ -33,7 +32,7 @@
         <div>
           <%= f.label :thinking_topic, "整理したいテーマ", class: "block text-sm font-normal text-gray-600 mb-1.5" %>
           <%= f.text_field :thinking_topic,
-              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition" %>
+              class: "field-error:border-red-500 field-error:bg-red-50 field-error:focus:border-red-500 w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition" %>
         </div>
 
         <%# 箇条書き %>

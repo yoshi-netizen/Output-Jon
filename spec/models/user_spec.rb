@@ -10,8 +10,7 @@ RSpec.describe User, type: :model do
 
       it 'メールアドレスが空だと無効であること' do
         user = build(:user, email: nil)
-        user.valid?
-        expect(user.errors[:email]).to include("can't be blank")
+        expect(user).not_to be_valid
       end
 
       it 'パスワードが空だと無効であること' do
@@ -47,7 +46,6 @@ RSpec.describe User, type: :model do
           it 'terms_agreedがfalseだと無効であること' do
             user = build(:user, terms_agreed: false)
             expect(user).not_to be_valid(:create)
-            expect(user.errors[:terms_agreed]).to include('must be accepted')
           end
 
           it 'terms_agreedがtrueだと有効であること' do

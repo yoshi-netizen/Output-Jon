@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    attributes:
+      post:
+        thinking_topic: 整理したいテーマ
+        thinking_diffusion: 思考の書き出し
+        thinking_core: 思考の目的
+        thinking_output: 整理した思考
+      user:
+        terms_agreed: 利用規約
