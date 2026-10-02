@@ -7,11 +7,11 @@ export default class extends Controller {
   // コピーボタンをクリックしたらlabel「コピー」が「コピーしました」に変わり、2秒間押せなくなる
   labelchange() {
     this.buttonTarget.disabled = true;
-    this.labelTarget.textContent = "コピーしました";
+    this.labelTarget.textContent = "コピーしましたcheck";
 
     this.timer = setTimeout(() => {                  // 2秒後に元に戻る
       this.buttonTarget.disabled = false;
-      this.labelTarget.textContent = "コピー";
+      this.labelTarget.textContent = "コピーcontent_copy";
     }, 2000);
   }
 
