@@ -59,7 +59,7 @@
         </div>
 
         <%# 整理した思考 + AIボタン %>
-        <div>
+        <div data-controller="clipboard">
           <div class="flex items-center justify-between mb-1.5">
             <%= f.label :thinking_output, "思考を整理する", class: "text-sm font-bold text-gray-600" %>
               <%= f.button formaction: generate_summary_posts_path,
@@ -71,11 +71,11 @@
                   <%= render "ai_spinner" %>
                 </span>
               <% end %>
-              <div data-controller="clipboard">
+              <div>
                 <%= button_tag "copy", 
                     name: "copy",
                     type: "button",
-                    data: { action: "click->clipboard#labelchange", clipboard_target: "button" },
+                    data: { action: "click->clipboard#copy", clipboard_target: "button" },
                     class: "text-sm font-bold text-white px-3 py-1.5 rounded-lg cursor-pointer transition hover:opacity-90 whitespace-nowrap bg-[#da8d6c] disabled:cursor-default" do %>
                   <span data-clipboard-target="label">コピー</span>
                 <% end %>
