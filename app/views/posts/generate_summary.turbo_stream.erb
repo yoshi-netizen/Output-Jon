@@ -1,2 +1,4 @@
-<% # Turbo Streamsを使用して、"post_thinking_output"というIDを持つ要素の内容を@summaryで更新する %>
+<%# エラーメッセージを消すためにフラッシュを更新する %>
+<%= turbo_stream.replace "flash", partial: "layouts/flash" %>
+<%# Turbo Streamsを使用して、"post_thinking_output"というIDを持つ要素の内容を@summaryで更新する %>
 <%= turbo_stream.update "post_thinking_output", @summary %>
