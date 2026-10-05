@@ -68,6 +68,8 @@ Rails.application.configure do
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
   # Use a different cache store in production.
+  # rate_limit の回数を Redis（Render Key Value）で数える。
+  # インスタンスやプロセスを増やしても、回数を正しく数えられるようにするため。
   config.cache_store = :redis_cache_store, { url: ENV["REDIS_URL"] }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).

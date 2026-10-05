@@ -20,7 +20,10 @@ gem "cssbundling-rails"
 gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
-
+# Rails 7.2 系は connection_pool の2系を使う方針のため、3未満に固定する。
+# 3系だと RedisCacheStore が起動時に ArgumentError になる（rails/rails#56291）。
+# Rails 7.2.4 以上では activesupport 側で同じ制限がかかるので、この行は削除できる。
+gem "connection_pool", "< 3"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
