@@ -51,7 +51,7 @@
     <% elsif @q.result.none? %>
       <div class="bg-white border border-gray-100 rounded-2xl p-12 text-center">
         <p class="text-sm text-gray-400 mb-6">検索結果がありませんでした。</p>
-        <%= button_to "検索条件をリセット", posts_path, method: :get,
+        <%= link_to "検索条件をリセット", posts_path, method: :get,
             class: "text-sm font-normal text-white px-6 py-2.5 rounded-lg transition hover:opacity-90 bg-[#da8d6c]" %>
       </div>
     <% else %>

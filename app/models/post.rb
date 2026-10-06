@@ -12,6 +12,6 @@ class Post < ApplicationRecord
   ]
 
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "thinking_core", "thinking_topic"]
+    [ "thinking_core", "thinking_topic" ].freeze
   end
 end
