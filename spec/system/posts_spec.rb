@@ -69,6 +69,55 @@ RSpec.describe "思考整理の投稿機能", type: :system do
         expect(page).to have_link '思考を整理する', href: new_post_path
       end
     end
+
+    context '検索・絞り込み' do
+      let(:horenso)  { '【報連相】 どう伝えればいいか整理したい' }
+      let(:kabeuchi) { '【壁打ち】 モヤモヤしていることを言語化したい' }
+
+      # テーマと整理の目的の組み合わせが異なる3件を用意する
+      let!(:post_a) { FactoryBot.create(:post, user: user, thinking_topic: '転職の悩み', thinking_core: horenso) }
+      let!(:post_b) { FactoryBot.create(:post, user: user, thinking_topic: '転職の準備', thinking_core: kabeuchi) }
+      let!(:post_c) { FactoryBot.create(:post, user: user, thinking_topic: '読書メモ', thinking_core: horenso) }
+
+      before do
+        visit posts_path
+      end
+
+      it 'テーマの部分一致で絞り込めること' do
+        fill_in 'テーマ', with: '転職'
+        click_on '検索する'
+
+        expect(page).to have_content '転職の悩み'
+        expect(page).to have_content '転職の準備'
+        expect(page).not_to have_content '読書メモ'
+      end
+
+      it '整理の目的で絞り込めること' do
+        select horenso, from: '整理の目的'
+        click_on '検索する'
+
+        expect(page).to have_content '転職の悩み'
+        expect(page).to have_content '読書メモ'
+        expect(page).not_to have_content '転職の準備'
+      end
+
+      it 'テーマと整理の目的の両方を満たす投稿だけが表示されること' do
+        fill_in 'テーマ', with: '転職'
+        select horenso, from: '整理の目的'
+        click_on '検索する'
+
+        expect(page).to have_content '転職の悩み'
+        expect(page).not_to have_content '転職の準備'
+        expect(page).not_to have_content '読書メモ'
+      end
+
+      it '条件に合う投稿がないとき、検索結果がない旨が表示されること' do
+        fill_in 'テーマ', with: '存在しない言葉'
+        click_on '検索する'
+
+        expect(page).to have_content '検索結果がありませんでした'
+      end
+    end
   end
 
   describe '投稿詳細機能', type: :system do
