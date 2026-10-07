@@ -16,7 +16,6 @@
         <%= f.label :thinking_topic_cont, "テーマ", class: "block text-sm font-bold text-gray-600 mb-1.5" %>
         <%= f.search_field :thinking_topic_cont, placeholder: "テーマを入力", class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition" %>
       </div>
-
       <div class="flex-1">
         <%= f.label :thinking_core_eq, "整理の目的", class: "block text-sm font-bold text-gray-600 mb-1.5" %>
         <%= f.select :thinking_core_eq,
@@ -24,11 +23,10 @@
                 { include_blank: 'すべて' },
                 class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition bg-white" %>
       </div>
-
       <%= f.submit "検索する", class: "w-full sm:w-auto px-5 py-2.5 text-sm font-bold text-white rounded-lg cursor-pointer transition hover:opacity-90 bg-[#da8d6c]" %>
     <% end %>
 
-    <% if @posts.any? %>
+    <% if @posts.present? %>
       <ul class="space-y-3">
         <% @posts.each do |post| %>
           <li>
@@ -48,10 +46,10 @@
           </li>
         <% end %>
       </ul>
-    <% elsif @q.result.none? %>
+    <% elsif current_user.posts.exists? %>
       <div class="bg-white border border-gray-100 rounded-2xl p-12 text-center">
         <p class="text-sm text-gray-400 mb-6">検索結果がありませんでした。</p>
-        <%= link_to "検索条件をリセット", posts_path, method: :get,
+        <%= link_to "検索条件をリセット", posts_path,
             class: "text-sm font-normal text-white px-6 py-2.5 rounded-lg transition hover:opacity-90 bg-[#da8d6c]" %>
       </div>
     <% else %>

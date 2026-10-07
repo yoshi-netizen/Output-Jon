@@ -138,6 +138,16 @@ RSpec.describe "Posts", type: :request do
       end
     end
 
+    # --- index ---
+    describe "GET /posts" do
+      context "許可していない検索条件が指定された場合" do
+        it "200を返す" do # 許可外の条件でも例外（500）にならないこと
+          get posts_path, params: { q: { thinking_output_cont: "a" } }
+          expect(response).to have_http_status(:ok)
+        end
+      end
+    end
+
     # --- generate_summary（生成と保存の分離） ---
     describe "POST /posts/generate_summary" do
       let(:ai_params) do
