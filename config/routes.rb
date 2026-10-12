@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   # サインアウト (/users/sign_out)
   # パスワードリセット (/users/password/new, /users/password/editなど)　
 
+  # Letter Opener Web を開発環境で使用するためのルーティング
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   # https://guides.rubyonrails.org/routing.html の DSL に従ってアプリケーションのルートを定義します。
 
   # /up でヘルスステータスを表示します。アプリケーションが例外なく起動した場合は 200、それ以外の場合は 500 を返します。
