@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # サインアップ (/users/sign_up)
   # ログイン (/users/sign_in)
   # サインアウト (/users/sign_out)
-  # パスワードリセット (/users/password/new, /users/password/editなど)　
+  # パスワードリセット (/users/password/new, /users/password/editなど)
 
   # Letter Opener Web を開発環境で使用するためのルーティング
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
