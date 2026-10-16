@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, skip: [ :passwords, :registrations ]
+  devise_for :users, skip: [ :registrations ]
   devise_scope :user do
     get  "/users/sign_up", to: "devise/registrations#new",    as: :new_user_registration
     post "/users",         to: "devise/registrations#create",  as: :user_registration
@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   # サインアップ (/users/sign_up)
   # ログイン (/users/sign_in)
   # サインアウト (/users/sign_out)
-  # パスワードリセット (/users/password/new, /users/password/editなど)　⚠️⚠️⚠️現在、外している⚠️⚠️⚠️
+  # パスワードリセット (/users/password/new, /users/password/editなど)
+
+  # Letter Opener Web を開発環境で使用するためのルーティング
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   # https://guides.rubyonrails.org/routing.html の DSL に従ってアプリケーションのルートを定義します。
 
