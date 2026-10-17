@@ -83,6 +83,14 @@
                 class: "block w-full px-3 pb-2.5 pt-1 text-sm border-0 rounded-lg focus:outline-none resize-none" %>
           </div>
         </div>
+
+        <%# リマインド日付 %>
+        <div class="mt-6">
+          <%= f.label :remind_date, "リマインド日付", class: "block text-sm font-bold text-gray-600 mb-1.5" %>
+          <%= f.date_field :remind_date,
+              class: "w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition bg-white" %>
+        </div>
+
         <div class="mt-6 flex items-center gap-3">
           <%= f.submit "更新する",
               class: "text-sm font-normal text-white px-6 py-2.5 rounded-lg cursor-pointer transition hover:opacity-90 bg-primary" %>
