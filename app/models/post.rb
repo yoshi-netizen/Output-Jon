@@ -28,8 +28,8 @@ class Post < ApplicationRecord
   private
 
   def check_remind_date_past
-    if remind_date.present? && remind_date < Date.current
-      errors.add(:remind_date, "は本日以降の日付を選択してください")
+    if remind_date.present? && remind_date <= Date.current
+      errors.add(:remind_date, "は明日以降の日付を選択してください")
     end
   end
 end
