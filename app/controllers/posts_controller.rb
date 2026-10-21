@@ -70,6 +70,6 @@ class PostsController < ApplicationController
   end
 
   def post_params  # ストロングパラメータ
-    params.require(:post).permit(:thinking_topic, :thinking_diffusion, :thinking_core, :thinking_output) # パラメーターのキー
+    params.require(:post).permit(:thinking_topic, :thinking_diffusion, :thinking_core, :thinking_output, :remind_date) # パラメーターのキー
   end
 end

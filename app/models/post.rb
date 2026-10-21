@@ -2,6 +2,9 @@ class Post < ApplicationRecord
   belongs_to :user
 
   validates :thinking_topic, presence: true
+  validate :check_remind_date_past, if: :remind_date_changed?
+
+  scope :remindable_today, -> { where(remind_date: Date.current) }
 
   # 整理の目的の種類を定義
   CORE_THINKING_TYPES = [
@@ -20,5 +23,13 @@ class Post < ApplicationRecord
   # 関連をたどる検索は許可しない(Userモデルを検索させない)
   def self.ransackable_associations(auth_object = nil)
     []
+  end
+
+  private
+
+  def check_remind_date_past
+    if remind_date.present? && remind_date <= Date.current
+      errors.add(:remind_date, "は明日以降の日付を選択してください")
+    end
   end
 end
