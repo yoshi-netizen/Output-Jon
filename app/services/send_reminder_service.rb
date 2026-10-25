@@ -17,7 +17,7 @@ class SendReminderService
   def send_reminder(user, posts, channel)
     if channel == :email
       RemindMailer.with(user: user, posts: posts).reminder.deliver_now
-      posts.each { |post| post.update!(remind_date: nil) } # リマインド済みとしてremind_dateをクリア
+      Post.where(id: posts.map(&:id)).update_all(remind_date: nil) # リマインド済みとしてremind_dateをクリア
       Rails.logger.info "Sent reminder email to user: #{user.id}, posts: #{posts.map(&:id)}"
     else
       Rails.logger.warn "No notification channel for user: #{user.id}"
