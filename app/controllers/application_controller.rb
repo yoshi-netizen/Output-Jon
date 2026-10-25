@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
   # ログイン済みユーザーが最新の利用規約に同意していない場合、利用規約同意ページにリダイレクトする
   before_action :require_terms_agreement
 
-  # ログイン後の遷移先を投稿作成ページに設定
+  # ログイン後の遷移先をセッションに保存されたURLもしくは投稿作成ページに設定
   # deviseのデフォルトではルートページに設定されているため
   def after_sign_in_path_for(resource)
-    new_post_path
+    stored_location_for(resource) || new_post_path
   end
 
   private
