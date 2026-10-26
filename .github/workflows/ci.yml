@@ -72,7 +72,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      # Node を用意（本番 Dockerfile と同じバージョンに揃えるため .node-version=24.14.1 を参照）
+      # Node を用意（本番 Dockerfile と同じバージョンに揃えるため .node-version=24.22.1 を参照）
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
