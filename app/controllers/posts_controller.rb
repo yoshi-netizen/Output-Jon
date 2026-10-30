@@ -54,6 +54,13 @@ class PostsController < ApplicationController
 
   def generate_summary
     @post = current_user.posts.new(post_params) # 新しいPostインスタンスを作成し、フォームから送信されたパラメータを設定
+
+    # テーマか思考の書き出しが空のときは、Geminiを呼ばずにエラーを返す（回数も数えない）
+    unless @post.ai_generatable?
+      flash.now[:alert] = "「整理したいテーマ」と「思考の書き出し」を入力してから、AIで整理してください"
+      return render :rate_limited, status: :unprocessable_content
+    end
+
     gemini = GeminiService.new          # GeminiServiceクラスのインスタンスを作成
     @summary = gemini.call(             # GeminiServiceのcallメソッドを呼び出し、レスポンスを@summaryに格納
     topic:     @post.thinking_topic,
@@ -77,7 +84,6 @@ class PostsController < ApplicationController
       render :rate_limited, status: :too_many_requests
     end
   end
-
 
   # レート制限に引っかかったときの応答（ここで応答を返すので、generate_summary は実行されない）
   def rate_limit_exceeded

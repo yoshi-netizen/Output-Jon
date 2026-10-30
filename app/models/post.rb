@@ -14,6 +14,11 @@ class Post < ApplicationRecord
     "【壁打ち】 モヤモヤしていることを言語化したい"
   ].freeze
 
+  # AI生成に必要な入力（テーマと思考の書き出し）がそろっているかチェックする
+  def ai_generatable?
+    thinking_topic.present? && thinking_diffusion.present?
+  end
+
   # 検索可能な属性を定義
   def self.ransackable_attributes(auth_object = nil)
     [ "thinking_core", "thinking_topic" ]
