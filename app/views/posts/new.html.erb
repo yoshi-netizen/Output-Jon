@@ -70,6 +70,7 @@
             <% end %>
           </div>
           <p class="text-xs text-gray-400 mb-1.5">「AIで整理する」ボタンをクリックすると入力内容をもとに思考を整理します。生成後に自由に編集できます。</p>
+          <%= render "ai_usage_remaining" %>
           <div data-controller="clipboard"
               class="border border-gray-200 rounded-lg transition has-[textarea:focus]:border-primary">
             <%# ツールバー行（右寄せでコピーボタン） %>

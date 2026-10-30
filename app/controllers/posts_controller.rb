@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   # アクションを実行する前にログインしているかチェックし、していなければログインしてページへリダイレクトする
   before_action :authenticate_user!
+  before_action :check_ai_usage_limit, only: :generate_summary
   # AI生成（generate_summary）は、同じユーザーにつき1分間に2回まで実行できる
   rate_limit to: 2, within: 1.minute,
              by: -> { current_user.id },         # ユーザーごとに回数を数える
@@ -59,9 +60,24 @@ class PostsController < ApplicationController
     diffusion: @post.thinking_diffusion,
     core:      @post.thinking_core
     )
+    if @summary.nil?
+      flash.now[:alert] = "AIによる要約の生成に失敗しました"
+      render :rate_limited, status: :bad_gateway
+    else
+      current_user.increment_ai_usage!
+    end
   end
 
   private
+
+  # 一日のAI生成の利用上限に達しているかチェック
+  def check_ai_usage_limit
+    unless current_user.can_use_ai?
+      flash.now[:alert] = "AI生成の利用上限に達しました。明日までご利用できません。"
+      render :rate_limited, status: :too_many_requests
+    end
+  end
+
 
   # レート制限に引っかかったときの応答（ここで応答を返すので、generate_summary は実行されない）
   def rate_limit_exceeded

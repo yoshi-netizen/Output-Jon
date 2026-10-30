@@ -1,4 +1,8 @@
 <%# エラーメッセージを消すためにフラッシュを更新する %>
 <%= turbo_stream.replace "flash", partial: "layouts/flash" %>
+
 <%# Turbo Streamsを使用して、"post_thinking_output"というIDを持つ要素の内容を@summaryで更新する %>
 <%= turbo_stream.update "post_thinking_output", @summary %>
+
+<%# AI使用回数の残りを更新 %>
+<%= turbo_stream.replace "ai_usage_remaining", partial: "posts/ai_usage_remaining" %>
