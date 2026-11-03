@@ -65,4 +65,21 @@ RSpec.describe Post, type: :model do
       expect(Post.remindable_today).to contain_exactly(today_post) # remindable_todayで当日の投稿だけが返ることを確認
     end
   end
+
+  describe "AI生成の利用可否" do
+    it "テーマが入力されていなければAI生成を利用できないこと" do
+      post.thinking_topic = ""
+      expect(post.ai_generatable?).to be false
+    end
+
+    it "思考の書き出しが入力されていなければAI生成を利用できないこと" do
+      post.thinking_diffusion = ""
+      expect(post.ai_generatable?).to be false
+    end
+
+    it "テーマと思考の書き出しが入力されていればAI生成を利用できること" do
+      # FactoryBotの初期値（テーマ・書き出しともに入力済み）をそのまま使う
+      expect(post.ai_generatable?).to be true
+    end
+  end
 end
