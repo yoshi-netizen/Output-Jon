@@ -6,7 +6,7 @@
     </p>
   <% else %>
     <p class="text-xs text-red-500 mb-1.5">
-    本日の上限（<%= User::DAILY_AI_USAGE_LIMIT %>回）に達しました。明日0時にリセットされます
+    AI生成は本日の上限（<%= User::DAILY_AI_USAGE_LIMIT %>回）に達しました。明日0時にリセットされます。
     </p>
   <% end %>
 </div>
