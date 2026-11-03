@@ -4,10 +4,10 @@ RSpec.describe "Posts", type: :request do
   let(:user)       { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:user) }
   let(:post_record) { FactoryBot.create(:post, user: user) }
+  let(:gemini_double) { instance_double(GeminiService) }
 
   # GeminiServiceをstubで差し替え（全テストで共通）
   before do
-    gemini_double = instance_double(GeminiService)
     allow(GeminiService).to receive(:new).and_return(gemini_double)
     allow(gemini_double).to receive(:call).and_return("AIが生成した整理文章")
   end
@@ -165,6 +165,85 @@ RSpec.describe "Posts", type: :request do
              headers: { "Accept" => "text/vnd.turbo-stream.html" }
         expect(response.media_type).to eq("text/vnd.turbo-stream.html")
         expect(response.body).to include("AIが生成した整理文章")
+      end
+
+      context "AI生成成功時" do
+        it "ai_usage_count が1増える" do
+          # 今日すでに5回使った状態から始める（0だと初期値と区別できず、日付がnilだとリセットの分岐を通るため）
+          user.update!(ai_usage_count: 5, ai_usage_date: Date.current)
+          expect {
+            post generate_summary_posts_path, params: ai_params,
+                 headers: { "Accept" => "text/vnd.turbo-stream.html" }
+          }.to change { user.reload.ai_usage_count }.from(5).to(6)
+        end
+      end
+
+      context "AI生成失敗時" do
+        before do
+          # 今日すでに5回使った状態から始める（0だと初期値と区別できず、日付がnilだとリセットの分岐を通るため）
+          user.update!(ai_usage_count: 5, ai_usage_date: Date.current)
+          allow(gemini_double).to receive(:call).and_return(nil)
+          post generate_summary_posts_path, params: ai_params,
+               headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        end
+
+        it "502が返る" do
+          expect(response).to have_http_status(:bad_gateway)
+        end
+
+        it "ai_usage_count が増えない" do
+          expect(user.reload.ai_usage_count).to eq(5)
+        end
+
+        it "エラーメッセージを返す" do
+          expect(response.body).to include("AIによる要約の生成に失敗しました")
+        end
+
+        it "生成結果が返らない（フォーム内容が上書きされない）" do
+          expect(response.body).not_to include("post_thinking_output")
+        end
+      end
+
+      context "本日の上限に達しているとき" do
+        before do
+          user.update!(ai_usage_count: User::DAILY_AI_USAGE_LIMIT, ai_usage_date: Date.current)
+          post generate_summary_posts_path, params: ai_params,
+               headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        end
+
+        it "429が返る" do
+          expect(response).to have_http_status(:too_many_requests)
+        end
+
+        it "GeminiService の call が呼ばれない" do
+          expect(gemini_double).not_to have_received(:call)
+        end
+
+        it "エラーメッセージを返す" do
+          expect(response.body).to include("AI生成の利用上限に達しました")
+        end
+      end
+
+      context "テーマか思考の書き出しが空のとき" do
+        before do
+          # 今日すでに5回使った状態から始める（0だと初期値と区別できず、日付がnilだとリセットの分岐を通るため）
+          user.update!(ai_usage_count: 5, ai_usage_date: Date.current)
+          post generate_summary_posts_path,
+               params: { post: { thinking_topic: "", thinking_diffusion: "", thinking_core: "" } },
+               headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        end
+
+        it "422が返る" do
+          expect(response).to have_http_status(:unprocessable_content)
+        end
+
+        it "GeminiService の call が呼ばれない" do
+          expect(gemini_double).not_to have_received(:call)
+        end
+
+        it "ai_usage_count が増えない" do
+          expect(user.reload.ai_usage_count).to eq(5)
+        end
       end
     end
 

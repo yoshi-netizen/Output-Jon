@@ -53,8 +53,12 @@ class GeminiService
     if response.code == "200"
       JSON.parse(response.body).dig("candidates", 0, "content", "parts", 0, "text")
     else
-      "エラーが発生しました: #{response.code}"
+      Rails.logger.error("Gemini API error: #{response.code} - #{response.body}")
+      nil # textを書き換えないようにするため、エラー時はnilを返す
     end
+  rescue StandardError => e # 通信エラー（タイムアウト・接続失敗など）やレスポンスの解析失敗のときも、nilを返す
+    Rails.logger.error("Gemini API request failed: #{e.class} - #{e.message}")
+    nil
   end
 
   private

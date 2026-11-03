@@ -1,0 +1,12 @@
+<%# AI生成の残り使用回数表示 %>
+<div id="ai_usage_remaining">
+  <% if current_user.can_use_ai? %>
+    <p class="text-xs text-gray-400 mb-1.5">
+    AI生成は本日あと <%= current_user.remaining_ai_usage %> 回 使えます
+    </p>
+  <% else %>
+    <p class="text-xs text-red-500 mb-1.5">
+    AI生成は本日の上限（<%= User::DAILY_AI_USAGE_LIMIT %>回）に達しました。明日0時にリセットされます。
+    </p>
+  <% end %>
+</div>

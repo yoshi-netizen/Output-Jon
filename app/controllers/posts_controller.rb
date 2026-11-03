@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   # アクションを実行する前にログインしているかチェックし、していなければログインしてページへリダイレクトする
   before_action :authenticate_user!
+  before_action :check_ai_usage_limit, only: :generate_summary
   # AI生成（generate_summary）は、同じユーザーにつき1分間に2回まで実行できる
   rate_limit to: 2, within: 1.minute,
              by: -> { current_user.id },         # ユーザーごとに回数を数える
@@ -53,15 +54,36 @@ class PostsController < ApplicationController
 
   def generate_summary
     @post = current_user.posts.new(post_params) # 新しいPostインスタンスを作成し、フォームから送信されたパラメータを設定
+
+    # テーマか思考の書き出しが空のときは、Geminiを呼ばずにエラーを返す（回数も数えない）
+    unless @post.ai_generatable?
+      flash.now[:alert] = "「整理したいテーマ」と「思考の書き出し」を入力してから、AIで整理してください"
+      return render :rate_limited, status: :unprocessable_content
+    end
+
     gemini = GeminiService.new          # GeminiServiceクラスのインスタンスを作成
     @summary = gemini.call(             # GeminiServiceのcallメソッドを呼び出し、レスポンスを@summaryに格納
     topic:     @post.thinking_topic,
     diffusion: @post.thinking_diffusion,
     core:      @post.thinking_core
     )
+    if @summary.nil?
+      flash.now[:alert] = "AIによる要約の生成に失敗しました"
+      render :rate_limited, status: :bad_gateway
+    else
+      current_user.increment_ai_usage!
+    end
   end
 
   private
+
+  # 一日のAI生成の利用上限に達しているかチェック
+  def check_ai_usage_limit
+    unless current_user.can_use_ai?
+      flash.now[:alert] = "AI生成の利用上限に達しました。明日までご利用できません。"
+      render :rate_limited, status: :too_many_requests
+    end
+  end
 
   # レート制限に引っかかったときの応答（ここで応答を返すので、generate_summary は実行されない）
   def rate_limit_exceeded

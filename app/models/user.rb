@@ -13,6 +13,33 @@ class User < ApplicationRecord
 
   CURRENT_TERMS_UPDATED_AT = Time.utc(2026, 9, 1, 0, 0, 0)
 
+  # 1日のAI使用制限回数（日本時間の0時にリセット）
+  DAILY_AI_USAGE_LIMIT = 20
+
+  # 今日あと何回AI生成できるか
+  def remaining_ai_usage
+    return DAILY_AI_USAGE_LIMIT unless ai_usage_date == Date.current
+    [ DAILY_AI_USAGE_LIMIT - ai_usage_count, 0 ].max # 0回未満にならないようにする
+  end
+
+  # 今日まだAI生成できるか
+  def can_use_ai?
+    remaining_ai_usage.positive?
+  end
+
+  # AI生成に成功したときに1回数える
+  def increment_ai_usage!
+    today = Date.current
+    with_lock do                         # 複数のタブから同時更新を防ぐためロックする
+      if ai_usage_date == today
+        new_count = ai_usage_count + 1   # 今日すでに使っている → 1回増やす
+      else
+        new_count = 1                    # 今日はまだ使っていない → 今回が1回目
+      end
+      update!(ai_usage_count: new_count, ai_usage_date: today)
+    end
+  end
+
   def agreed_to_current_terms?
     terms_accepted_at.present? && terms_accepted_at >= CURRENT_TERMS_UPDATED_AT
   end
