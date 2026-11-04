@@ -77,3 +77,9 @@ gem "devise"
 gem "ransack"
 
 gem "resend"
+
+# OAuth 2.0の共通処理を実装したOmniAuth用ライブラリ
+gem "omniauth-oauth2"
+
+# OmniAuth の CSRF（なりすまし）対策
+gem "omniauth-rails_csrf_protection"

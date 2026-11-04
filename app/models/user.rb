@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :rememberable, :validatable, :recoverable
+  devise :database_authenticatable, :registerable, :rememberable, :validatable, :recoverable, :omniauthable, omniauth_providers: %i[line]
   has_many :posts, dependent: :destroy
 
   # 新規登録時の同意を必須とする
