@@ -44,6 +44,25 @@ class User < ApplicationRecord
     terms_accepted_at.present? && terms_accepted_at >= CURRENT_TERMS_UPDATED_AT
   end
 
+  # OAuth認証からユーザーを取得または作成する
+  def self.from_omniauth(auth)
+    user = find_or_initialize_by(provider: auth.provider, uid: auth.uid)
+    return user unless user.new_record?
+
+    user.email    = auth.info.email.presence || "#{auth.uid}-#{auth.provider}@example.com"
+    user.name     = auth.info.name.presence  || default_name_for(auth.provider)
+    user.password = Devise.friendly_token[0, 20]
+    user.save
+    user
+  end
+
+  # OAuth認証でデフォルトの名前を返す
+  def self.default_name_for(provider)
+    {
+      "line" => "LINEユーザー"
+    }.fetch(provider, "ユーザー")
+  end
+
   private
 
   def record_terms_accepted_at
