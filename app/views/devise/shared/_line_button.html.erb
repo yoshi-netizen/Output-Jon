@@ -1,0 +1,19 @@
+<%#
+  LINEログインボタンの中身
+  LINEログインボタン デザインガイドライン準拠: https://developers.line.biz/ja/docs/line-login/login-button/
+  - ベース: #06C755
+  - 文字・ロゴ: #FFFFFF
+  - 区切り線: 黒 8%
+  - ホバー: 黒 10% を重ねる / 押下: 黒 30% を重ねる
+  - アイコン: 公式素材（line_44.png）を等倍・縦横比維持で使用
+  - 文言: 改行禁止
+  呼び出し側の <button> には group relative overflow-hidden を付けること
+%>
+<%= button_tag type: "submit",
+      class: "group relative flex w-full items-center overflow-hidden rounded-lg bg-[#06C755] text-white cursor-pointer" do %>
+  <span class="flex shrink-0 border-r border-black/8">
+    <%= image_tag "line_icon.png", alt: "" %>
+  </span>
+  <span class="flex-1 whitespace-nowrap text-center text-sm font-bold">LINEでログイン</span>
+  <span class="pointer-events-none absolute inset-0 bg-black opacity-0 group-hover:opacity-10 group-active:opacity-30"></span>
+<% end %>
