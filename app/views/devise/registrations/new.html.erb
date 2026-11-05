@@ -57,7 +57,7 @@
 
     <%= form_with url: user_line_omniauth_authorize_path, method: :post, data: { turbo: false } do %>
       <div class="flex items-center gap-2 mb-4">
-        <%= check_box_tag :terms_agreed, "1", false, id: "line_terms_agreed" %>
+        <%= check_box_tag :terms_agreed, "1", false, id: "line_terms_agreed", required: true %>
         <%= label_tag :line_terms_agreed, class: "text-sm text-gray-600" do %>
           <%= link_to "利用規約", "/terms", target: "_blank", class: "underline text-primary" %>
           と
