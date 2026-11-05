@@ -20,12 +20,6 @@ module OmniAuth
 
       uid { raw_info["userId"] }
 
-      info do
-        {
-          name: raw_info["displayName"]
-        }
-      end
-
       # PROFILE 権限付きのアクセストークンで LINE プロフィールを取得する。
       def raw_info
         @raw_info ||= JSON.parse(access_token.get("v2/profile").body)
