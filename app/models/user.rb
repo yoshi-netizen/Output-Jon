@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :rememberable, :validatable, :recoverable, :omniauthable, omniauth_providers: %i[line]
   has_many :posts, dependent: :destroy
-
+  
   # 新規登録時の同意を必須とする
   validates_acceptance_of :terms_agreed, acceptance: true, allow_nil: false, on: [ :create, :terms_agreement ]
 
@@ -15,6 +15,30 @@ class User < ApplicationRecord
 
   # 1日のAI使用制限回数（日本時間の0時にリセット）
   DAILY_AI_USAGE_LIMIT = 20
+
+  # Devise内部の「email必須フラグ」をオーバーライド
+  def email_required?
+    # LINEログインではメールアドレスは不要
+    if provider == "line"
+      false
+    else
+      super
+    end
+  end
+  
+  # OAuth認証の結果から登録済みユーザーを返す
+  # 未登録の場合は、規約に同意しているときだけ作成する（同意がなければ nil を返す）
+  def self.from_omniauth(auth, terms_agreed:)
+    user = find_by(provider: auth.provider, uid: auth.uid)
+    return user if user                # 登録済み → そのまま返す
+    return nil unless terms_agreed     # 未登録・未同意 → 作らない
+    create(                            # 未登録・同意あり → 作成する
+      provider: auth.provider,
+      uid: auth.uid,
+      password: Devise.friendly_token[0, 20],
+      terms_agreed: true
+    )
+  end
 
   # 今日あと何回AI生成できるか
   def remaining_ai_usage
@@ -42,25 +66,6 @@ class User < ApplicationRecord
 
   def agreed_to_current_terms?
     terms_accepted_at.present? && terms_accepted_at >= CURRENT_TERMS_UPDATED_AT
-  end
-
-  # OAuth認証からユーザーを取得または作成する
-  def self.from_omniauth(auth)
-    user = find_or_initialize_by(provider: auth.provider, uid: auth.uid)
-    return user unless user.new_record?
-
-    user.email    = auth.info.email.presence || "#{auth.uid}-#{auth.provider}@example.com"
-    user.name     = auth.info.name.presence  || default_name_for(auth.provider)
-    user.password = Devise.friendly_token[0, 20]
-    user.save
-    user
-  end
-
-  # OAuth認証でデフォルトの名前を返す
-  def self.default_name_for(provider)
-    {
-      "line" => "LINEユーザー"
-    }.fetch(provider, "ユーザー")
   end
 
   private
