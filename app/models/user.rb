@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :rememberable, :validatable, :recoverable, :omniauthable, omniauth_providers: %i[line]
   has_many :posts, dependent: :destroy
-  
+
   # 新規登録時の同意を必須とする
   validates_acceptance_of :terms_agreed, acceptance: true, allow_nil: false, on: [ :create, :terms_agreement ]
 
@@ -25,7 +25,7 @@ class User < ApplicationRecord
       super
     end
   end
-  
+
   # OAuth認証の結果から登録済みユーザーを返す
   # 未登録の場合は、規約に同意しているときだけ作成する（同意がなければ nil を返す）
   def self.from_omniauth(auth, terms_agreed:)

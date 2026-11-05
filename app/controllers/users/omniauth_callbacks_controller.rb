@@ -34,4 +34,3 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     }.fetch(provider.to_sym, provider.to_s.titleize)
   end
 end
-
