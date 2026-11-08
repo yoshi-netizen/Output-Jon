@@ -82,4 +82,7 @@ Rails.application.configure do
   # メールを送信する代わりに、Letter Opener Webを使用してブラウザでメールをプレビューする
   config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.perform_deliveries = true
+
+  # ngrok経由のアクセスを許可する（LINEログインのコールバック確認用）
+  config.hosts << ENV["NGROK_HOST"] if ENV["NGROK_HOST"].present?
 end

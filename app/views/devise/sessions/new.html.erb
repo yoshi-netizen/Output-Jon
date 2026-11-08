@@ -31,6 +31,16 @@
 
     <% end %>
 
+    <div class="flex items-center gap-3 my-6">
+      <div class="h-px flex-1 bg-gray-200"></div>
+      <span class="text-xs text-gray-400">または</span>
+      <div class="h-px flex-1 bg-gray-200"></div>
+    </div>
+
+    <%= form_with url: user_line_omniauth_authorize_path, method: :post, data: { turbo: false } do %>
+      <%= render "devise/shared/line_button" %>
+    <% end %>
+
     <div class="mt-6 text-center text-xs text-gray-400">
       <%= render "devise/shared/links" %>
     </div>

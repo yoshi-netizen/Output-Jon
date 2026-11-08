@@ -4,7 +4,7 @@
     <h2 class="text-xl font-bold text-gray-900 mb-1 tracking-tight">新規登録</h2>
     <p class="text-xs text-gray-400 mb-8">アカウントを作成してください</p>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: "email_registration_form" }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="mb-5">
@@ -47,7 +47,25 @@
       <div>
         <%= f.submit "アカウントを作成", class: "w-full py-2.5 text-sm font-normal text-white rounded-lg cursor-pointer transition hover:opacity-90 bg-primary" %>
       </div>
+    <% end %>
 
+    <div class="flex items-center gap-3 my-6">
+      <div class="h-px flex-1 bg-gray-200"></div>
+      <span class="text-xs text-gray-400">または</span>
+      <div class="h-px flex-1 bg-gray-200"></div>
+    </div>
+
+    <%= form_with url: user_line_omniauth_authorize_path, method: :post, id: "line_registration_form", data: { turbo: false } do %>
+      <div class="flex items-center gap-2 mb-4">
+        <%= check_box_tag :terms_agreed, "1", false, id: "line_terms_agreed", required: true %>
+        <%= label_tag :line_terms_agreed, class: "text-sm text-gray-600" do %>
+          <%= link_to "利用規約", "/terms", target: "_blank", class: "underline text-primary" %>
+          と
+          <%= link_to "プライバシーポリシー", "/privacy_policy", target: "_blank", class: "underline text-primary" %>
+          に同意する
+        <% end %>
+      </div>
+      <%= render "devise/shared/line_button" %>
     <% end %>
 
     <div class="mt-6 text-center text-xs text-gray-400">
