@@ -38,6 +38,20 @@ RSpec.describe User, type: :model do
         user = build(:user, email: "invalid-email")
         expect(user).not_to be_valid
       end
+
+      context 'LINEログインのユーザーの場合' do
+        it 'メールアドレスが空でも有効であること' do
+          user = build(:user, provider: "line", uid: "U0000000001", email: nil)
+          expect(user).to be_valid
+        end
+
+        # emailのNULL許容・デフォルト値なしが戻されると、2人目でユニーク制約違反になるため
+        it 'メールアドレスが空のユーザーを複数保存できること' do
+          create(:user, provider: "line", uid: "U0000000001", email: nil)
+          user = build(:user, provider: "line", uid: "U0000000002", email: nil)
+          expect(user.save).to be true
+        end
+      end
     end
 
     describe '規約同意' do
