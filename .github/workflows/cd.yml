@@ -10,7 +10,7 @@ permissions: {}
 jobs:
   deploy:
     if: github.event.pull_request.merged == true # マージされたら実行
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Deploy to Render
