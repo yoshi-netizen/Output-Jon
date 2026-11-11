@@ -85,4 +85,7 @@ Rails.application.configure do
 
   # ngrok経由のアクセスを許可する（LINEログインのコールバック確認用）
   config.hosts << ENV["NGROK_HOST"] if ENV["NGROK_HOST"].present?
+
+  # ルーティング側でもホストを指定して URL を生成できるようにする
+  Rails.application.routes.default_url_options = { host: "localhost", port: 3000 }
 end
