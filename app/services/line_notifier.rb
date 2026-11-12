@@ -58,4 +58,3 @@ class LineNotifier
     Rails.application.routes.url_helpers
   end
 end
-
