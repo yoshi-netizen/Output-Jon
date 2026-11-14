@@ -20,7 +20,7 @@ class SendReminderService
       Post.where(id: posts.map(&:id)).update_all(remind_date: nil) # リマインド済みとしてremind_dateをクリア
       Rails.logger.info "Sent reminder email to user: #{user.id}, posts: #{posts.map(&:id)}"
     elsif channel == :line
-      LineNotifier.push_reminder(user, posts)
+      LineNotifier.new.push_reminder(user, posts)
       Post.where(id: posts.map(&:id)).update_all(remind_date: nil)
       Rails.logger.info "Sent reminder LINE message to user: #{user.id}, posts: #{posts.map(&:id)}"
     else

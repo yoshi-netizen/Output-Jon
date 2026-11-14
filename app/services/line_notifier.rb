@@ -27,7 +27,7 @@ class LineNotifier
   # 公式アカウントを友だち追加しているか（プロフィールを取得できれば友だちとみなす）
   # 判定に失敗したときは false を返し、友だち追加の案内を出すようにする
   def friend?(user)
-    _body, status, _headers = client.get_profile_with_http_info(user_id: user.uid)
+    _body, status, _headers = client.get_profile_with_http_info(user_id: user.uid) # 本文、ステータスコード、ヘッダーを取得。bodyとheadersは使わないので_を付けて無視している
     status == 200
   rescue StandardError => e
     Rails.logger.warn "LINE friendship check failed: user=#{user.id} #{e.class} #{e.message}"
