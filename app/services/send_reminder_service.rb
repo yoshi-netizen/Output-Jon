@@ -35,7 +35,7 @@ class SendReminderService
   def notification_channel(user)
     if user.email.present?
       :email
-    elsif user.provider == "line" && user.uid.present?
+    elsif user.line_user?
       :line
     else
       :unknown
