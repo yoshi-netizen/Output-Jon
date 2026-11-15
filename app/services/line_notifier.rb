@@ -24,15 +24,16 @@ class LineNotifier
     raise DeliveryError, "LINE push failed: status=#{status} body=#{body.inspect}"
   end
 
-  # 公式アカウントを友だち追加しているか（プロフィールを取得できれば友だちとみなす）
-  # 判定に失敗したときは false を返し、友だち追加の案内を出すようにする
-  def friend?(user)
-    _body, status, _headers = client.get_profile_with_http_info(user_id: user.uid) # 本文、ステータスコード、ヘッダーを取得。bodyとheadersは使わないので_を付けて無視している
-    status == 200
-  rescue StandardError => e
-    Rails.logger.warn "LINE friendship check failed: user=#{user.id} #{e.class} #{e.message}"
-    false
-  end
+  # 【友だち確認について】
+  # 以前は「公式アカウントを友だち追加しているか」を確認する friend? を持っていたが、
+  # フォームに友だち追加リンクを常に表示する方針にしたため削除した（Issue #124）。
+  # 再実装するときの参考:
+  #   - 実装: git show b318f38:app/services/line_notifier.rb（friend?）
+  #           git show b8c7eaf:app/models/user.rb（User#line_friend?）
+  #   - 方法: Messaging API のプロフィール取得 GET /v2/bot/profile/{userId} が 200 なら友だちとみなす
+  #           （未追加でも公式アカウントにメッセージを送ったことがある人は 200 になる点に注意）
+  #   - 正確に判定するなら LINE ログイン API の GET /friendship/v1/status（friendFlag）。
+  #     ただしユーザー本人のアクセストークンが必要で、現状は保存していない
 
   private
 

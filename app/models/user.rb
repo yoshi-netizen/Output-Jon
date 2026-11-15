@@ -68,12 +68,6 @@ class User < ApplicationRecord
     terms_accepted_at.present? && terms_accepted_at >= CURRENT_TERMS_UPDATED_AT
   end
 
-# LINE公式アカウントを友だち追加しているか
-def line_friend?
-  return false unless provider == "line" && uid.present?  # LINEユーザーでなければ、API を呼ばずに false
-  LineNotifier.new.friend?(self)   # LINEユーザーなら、API で確認した結果（true / false）を返す
-end
-
   private
 
   def record_terms_accepted_at
