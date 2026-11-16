@@ -5,4 +5,11 @@ FactoryBot.define do
     password_confirmation { "password" }
     terms_agreed          { true } # on: :create の同意バリデーションを満たす
   end
+
+  factory :line_user, class: 'User' do
+    provider         { "line" }
+    sequence(:uid)   { |n| "line_user_#{n}" }
+    password         { "password" }
+    terms_agreed     { true }
+  end
 end
