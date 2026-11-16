@@ -71,7 +71,7 @@ class User < ApplicationRecord
   def line_user?
     provider == "line" && uid.present?
   end
-  
+
   private
 
   def record_terms_accepted_at
