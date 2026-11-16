@@ -68,6 +68,10 @@ class User < ApplicationRecord
     terms_accepted_at.present? && terms_accepted_at >= CURRENT_TERMS_UPDATED_AT
   end
 
+  def line_user?
+    provider == "line" && uid.present?
+  end
+
   private
 
   def record_terms_accepted_at

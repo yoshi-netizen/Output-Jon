@@ -83,3 +83,6 @@ gem "omniauth-oauth2"
 
 # OmniAuth の CSRF（なりすまし）対策
 gem "omniauth-rails_csrf_protection"
+
+# LINE Messaging API用ライブラリ
+gem "line-bot-api"

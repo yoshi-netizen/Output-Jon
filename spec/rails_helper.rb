@@ -72,4 +72,5 @@ RSpec.configure do |config|
 
   # request spec でも sign_in/sign_out が使えるようになる
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
 end
